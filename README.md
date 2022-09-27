@@ -13,12 +13,12 @@
 
 ## Wiki Links:
 
-- [App Features](https://github.com/giordanferda/EventLyfe/wiki/App-Features)
-- [Database Schema](https://github.com/giordanferda/EventLyfe/wiki/Database-Schema)
-- [Redux State Shape](https://github.com/giordanferda/EventLyfe/wiki/Redux-State-Shape)
-- [User Stories](https://github.com/giordanferda/EventLyfe/wiki/User-Stories)
-- [Wireframes](https://github.com/giordanferda/EventLyfe/wiki/Wireframes)
-- [API-Routes](https://github.com/giordanferda/EventLyfe/wiki/API-Routes)
+- [App Features](https://github.com/giordanferda/EventLyfe-Capstone/wiki/App-Features)
+- [Database Schema](https://github.com/giordanferda/EventLyfe-Capstone/wiki/Database-Schema)
+- [Redux State Shape](https://github.com/giordanferda/EventLyfe-Capstone/wiki/Redux-State-Shape)
+- [User Stories](https://github.com/giordanferda/EventLyfe-Capstone/wiki/User-Stories)
+- [Wireframes](https://github.com/giordanferda/EventLyfe-Capstone/wiki/Wireframes)
+- [API-Routes](https://github.com/giordanferda/EventLyfe-Capstone/wiki/API-Routes)
 
 ---
 
