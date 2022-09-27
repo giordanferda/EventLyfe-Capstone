@@ -9,7 +9,8 @@
 - #### DB: SQLAlchemy
 
 - #### Hosted on Heroku
-  Live Link:
+
+* [Live Link](https://eventlyfe.herokuapp.com/login)
 
 ## Wiki Links:
 
