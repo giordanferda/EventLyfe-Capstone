@@ -12,3 +12,9 @@ event_routes = Blueprint('events', __name__, url_prefix='/events')
 def all_events():
     events = Event.query.all()
     return {'events': [event.to_dict() for event in events]}
+
+#Get one event by id
+@event_routes.route('/<int:id>')
+def one_event(id):
+    event = Event.query.get(id)
+    return event.to_dict()
