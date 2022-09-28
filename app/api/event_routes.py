@@ -1,4 +1,3 @@
-from msvcrt import kbhit
 from flask import Blueprint, jsonify, request
 from app.models import db, Event
 from ..forms.event_form import EventForm
