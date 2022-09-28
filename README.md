@@ -42,6 +42,6 @@ flask db upgrade
 flask seed all
 ```
 
-- Now, run `flask run` under NotYelp and `npm start` under react-app
+- Now, run `flask run` under EventLyfe and `npm start` under react-app
 
 ### Your local host should be running with full functionality now!
