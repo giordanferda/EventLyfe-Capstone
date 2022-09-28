@@ -7,10 +7,11 @@ class Event(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   name = db.Column(db.String, nullable=False)
   description = db.Column(db.String, nullable=False)
+  ticket_quantity = db.Column(db.Integer, nullable=False)
   address = db.Column(db.String, nullable=False)
   state = db.Column(db.String, nullable=False)
   city = db.Column(db.String, nullable=False)
-  zipcode = db.Column(db.String, nullable=False)
+  zipcode = db.Column(db.Integer, nullable=False)
   start_time = db.Column(db.Time, nullable=False)
   end_time = db.Column(db.Time, nullable=False)
   preview_image = db.Column(db.String, nullable=False)
@@ -20,12 +21,14 @@ class Event(db.Model):
   owner_id = db.Column("owner_id", db.Integer, db.ForeignKey("users.id"))
 
   event_owner = db.relationship("User")
+  # ticket_quantity = db.relationship(back_populates="event")
 
   def to_dict(self):
     return {
       "id": self.id,
       "name": self.name,
       "description": self.description,
+      "ticket_quantity": self.ticket_quantity,
       "address": self.address,
       "state": self.state,
       "city": self.city,

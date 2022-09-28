@@ -22,7 +22,7 @@ const deleteEvent = (eventId) => ({
   type: DELETE,
   payload: eventId,
 });
-
+//get all events
 export const getEvents = () => async (dispatch) => {
   const res = await fetch("/api/events/");
   if (res.ok) {

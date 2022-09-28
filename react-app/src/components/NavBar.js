@@ -33,7 +33,7 @@ const NavBar = ({ loaded }) => {
 
   return (
     <nav>
-      <div>
+      <div className="navbar-container">
         <div className="eventlyfe-button">
           <NavLink
             to="/"
@@ -44,22 +44,20 @@ const NavBar = ({ loaded }) => {
             <img className="logo-img" alt="" src={logo} />
           </NavLink>
         </div>
-        <div>
+        <div className="navbar-links">
           <NavLink to="/login" exact={true} activeClassName="active">
             Login
           </NavLink>
-        </div>
-        <div>
+
           <NavLink to="/sign-up" exact={true} activeClassName="active">
             Sign Up
           </NavLink>
-        </div>
-        <div>
+
+          {/* <div>
           <NavLink to="/users" exact={true} activeClassName="active">
-            Users
+          Users
           </NavLink>
-        </div>
-        <div>
+        </div> */}
           <LogoutButton />
         </div>
       </div>
