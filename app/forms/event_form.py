@@ -31,6 +31,7 @@ class EventForm(FlaskForm):
   owner_id = IntegerField("owner_id", validators=[DataRequired()])
   name = StringField('name', validators=[DataRequired(), validate_name])
   description = StringField('description', validators=[DataRequired()])
+  ticket_quantity = IntegerField('ticket quantity', validators=[DataRequired()])
   address = StringField('address', validators=[DataRequired(), validate_address])
   state = StringField('state', validators=[DataRequired()])
   city = StringField('city', validators=[DataRequired(), validate_city])

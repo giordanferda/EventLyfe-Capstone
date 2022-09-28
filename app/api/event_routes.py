@@ -1,4 +1,3 @@
-from msvcrt import kbhit
 from flask import Blueprint, jsonify, request
 from app.models import db, Event
 from ..forms.event_form import EventForm
@@ -31,6 +30,7 @@ def create_event():
             owner_id=current_user.id,
             name=form.name.data,
             description=form.description.data,
+            ticket_quantity=form.ticket_quantity.data,
             address=form.address.data,
             state=form.state.data,
             city=form.city.data,
