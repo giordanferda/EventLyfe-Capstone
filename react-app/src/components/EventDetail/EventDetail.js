@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 
+//dummy commit
 function EventDetail() {
   const { eventId } = useParams();
   const history = useHistory();
