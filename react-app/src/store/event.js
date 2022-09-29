@@ -112,7 +112,7 @@ export default function eventReducer(state = {}, action) {
   switch (action.type) {
     case GET_ALL:
       newState = {};
-      action.payload.forEach((event) => {
+      action.payload.events.forEach((event) => {
         newState[event.id] = event;
       });
       return newState;

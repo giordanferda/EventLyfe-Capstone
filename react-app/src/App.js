@@ -10,7 +10,9 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import Splash from "./components/Splashpage/Splash";
 import EventsPage from "./components/EventsPage";
-
+import { getEvents } from "./store/event";
+import EventDetail from "./components/EventDetail/EventDetail";
+import CreateEvent from "./components/CreateEvent/CreateEvent";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -18,6 +20,7 @@ function App() {
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
+      await dispatch(getEvents());
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -39,9 +42,15 @@ function App() {
         <Route path="/" exact={true}>
           <Splash />
         </Route>
-        <Route path="/events">
+        <Route path="/events" exact={true}>
           <EventsPage />
         </Route>
+        <Route path="/events/:eventId" exact={true}>
+          <EventDetail />
+        </Route>
+        <ProtectedRoute path="/createEvent">
+          <CreateEvent />
+        </ProtectedRoute>
       </Switch>
     </BrowserRouter>
   );

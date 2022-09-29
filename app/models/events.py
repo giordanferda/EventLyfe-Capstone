@@ -22,7 +22,7 @@ class Event(db.Model):
 
   event_owner = db.relationship("User")
   # ticket_quantity = db.relationship(back_populates="event")
-
+  reviews = db.relationship("Review", back_populates="event", cascade="all, delete")
   def to_dict(self):
     return {
       "id": self.id,
@@ -38,5 +38,7 @@ class Event(db.Model):
       "preview_image": self.preview_image,
       "created_at": self.created_at,
       "updated_at": self.updated_at,
+      "review_ids": [review.id for review in self.reviews],
+      "avg_rating": (sum([review.stars for review in self.reviews]) / len(self.reviews)) if len(self.reviews) > 0 else 0,
       "event_owner": self.event_owner.to_dict()
     }
