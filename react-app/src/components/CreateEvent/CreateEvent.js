@@ -20,12 +20,10 @@ function CreateEvent() {
   const [start_time, setStartTime] = useState("");
   const [end_time, setEndTime] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
     setErrors([]);
 
     const eventData = {
@@ -86,13 +84,30 @@ function CreateEvent() {
     if (ticket_quantity > 2500) {
       errors.push("ticket_quantity: Ticket quantity must be less than 2500");
     }
-    if (!zipcode || !zipcode.match(zipCodeValid)) {
+    if (!zipcode || !JSON.stringify(zipcode).match(zipCodeValid)) {
       errors.push("zipcode: Zipcode must be 5 digits");
     }
+    if (cityAndStates[city] !== state) {
+      errors.push("city: City must be in the selected state");
+    }
     setErrors(errors);
-  }, [previewUrl, name, description, address, zipcode, ticket_quantity]);
+  }, [
+    previewUrl,
+    name,
+    description,
+    address,
+    zipcode,
+    ticket_quantity,
+    state,
+    city,
+  ]);
 
-  const CITIES = useMemo(() => Object.keys(cityAndStates), []);
+  const CITIES = useMemo(() => {
+    const dictionary = cityAndStates;
+    let dictionaryEntries = Object.entries(dictionary);
+    dictionaryEntries = dictionaryEntries.filter((entry) => entry[1] === state);
+    return dictionaryEntries.map((entry) => entry[0]);
+  }, [state]);
   const STATES = useMemo(() => {
     return [...new Set(Object.values(cityAndStates))].sort((a, b) =>
       a.localeCompare(b)
@@ -102,7 +117,7 @@ function CreateEvent() {
   return (
     <form onSubmit={handleSubmit}>
       <div className="CreateEventTitle">Create Your Event</div>
-      {isSubmitted &&
+      {errors.length > 0 &&
         errors.map((error, i) => (
           <div className="eventErrors">
             <div key={i} className="eventError">
