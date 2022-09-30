@@ -36,14 +36,14 @@ def create_event():
             city=form.city.data,
             zipcode=form.zipcode.data,
             start_time=form.start_time.data,
-            close_time=form.close_time.data,
+            end_time=form.end_time.data,
             preview_image=form.preview_image.data
         )
         db.session.add(new_event)
         db.session.commit()
         return jsonify(new_event.to_dict()), 200
     else:
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 500
 
 
 #Edit an Event
@@ -63,7 +63,7 @@ def edit_event(event_id):
             event.city = form.city.data
             event.zipcode = form.zipcode.data
             event.start_time = form.start_time.data
-            event.close_time = form.close_time.data
+            event.end_time = form.end_time.data
             event.preview_image = form.preview_image.data
             db.session.commit()
             return jsonify(event.to_dict()), 200
