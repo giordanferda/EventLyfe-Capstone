@@ -59,6 +59,7 @@ export const createEvent = (event) => async (dispatch) => {
       return data.errors;
     }
   } else {
+    console.log(await res.json());
     return ["Bad Data, Please try again"];
   }
 };
@@ -108,7 +109,7 @@ export const deleteEventById = (id) => async (dispatch) => {
 //reducers
 
 export default function eventReducer(state = {}, action) {
-  let newState;
+  let newState = { ...state };
   switch (action.type) {
     case GET_ALL:
       newState = {};

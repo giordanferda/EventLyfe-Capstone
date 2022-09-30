@@ -154,24 +154,28 @@ function CreateEvent() {
           onChange={(e) => setTicketQuantity(e.target.value)}
         ></input>
       </div>
-      <select>
+      <select
+        value={state}
+        onChange={(e) => {
+          console.log(e.target.value);
+          setState(e.target.value);
+        }}
+      >
         {STATES.map((state) => (
-          <option value={state} onClick={(e) => setState(e.target.value)}>
+          <option key={state} value={state}>
             {state}
           </option>
         ))}
       </select>
 
-      <select>
+      <select
+        onChange={(e) => {
+          setCity(e.target.value);
+          console.log(e);
+        }}
+      >
         {CITIES.map((city) => (
-          <option
-            value={city}
-            onClick={(e) => {
-              setCity(e.target.value);
-              setState(cityAndStates[e.target.value]);
-              console.log(e.target);
-            }}
-          >
+          <option key={city} value={city}>
             {city}
           </option>
         ))}
