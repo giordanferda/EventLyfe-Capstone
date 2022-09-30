@@ -6,7 +6,7 @@ function Splash() {
   return (
     <div className="splash-container">
       <div className="splash-content">
-        <img src={splashImg} />
+        <img src={splashImg} alt="not found" />
       </div>
       <div className="viewallevents">
         <button>

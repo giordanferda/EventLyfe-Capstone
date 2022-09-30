@@ -1,18 +1,14 @@
 import React from "react";
-import { NavLink, useHistory, Redirect } from "react-router-dom";
-import LogoutButton from "./auth/LogoutButton";
+import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./NavBar.css";
 import ProfileButton from "./ProfileButton";
 import logo from "./eventlyfe-logo.png";
 
 const NavBar = ({ loaded }) => {
-  const sessionUser = useSelector((state) => state.session.user);
   const sessionUser2 = useSelector((state) => state.session.user);
 
-  let sessionLinks;
   let currentUser;
-  const history = useHistory();
 
   if (sessionUser2) currentUser = true;
   else currentUser = false;

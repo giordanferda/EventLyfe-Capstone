@@ -1,18 +1,20 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory, useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import EditEventModal from "../EditEvent/EditEventModal";
 
 //dummy commit
 function EventDetail() {
   const { eventId } = useParams();
-  const history = useHistory();
-  const dispatch = useDispatch();
   const event = useSelector((state) => state.event[eventId]);
   // const user = useSelector((state) => state.session.user);
-  console.log(eventId);
+
   return (
     <div className="event-detail-container">
       <div className="event-detail-image">
         <img src={event?.preview_image} alt="event" />
+      </div>
+      <div className="EditDeleteBusiness flex">
+        <EditEventModal />
       </div>
       <div className="event-detail-name">{event?.name}</div>
       <div className="event-detail-location">
