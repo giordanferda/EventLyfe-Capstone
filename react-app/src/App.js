@@ -11,6 +11,7 @@ import EventsPage from "./components/EventsPage";
 import { getEvents } from "./store/event";
 import EventDetail from "./components/EventDetail/EventDetail";
 import CreateEvent from "./components/CreateEvent/CreateEvent";
+import "./index.css";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -29,27 +30,29 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar loaded={loaded} />
-      <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm />
-        </Route>
-        <Route path="/sign-up" exact={true}>
-          <SignUpForm />
-        </Route>
-        <Route path="/" exact={true}>
-          <Splash />
-        </Route>
-        <Route path="/events" exact={true}>
-          <EventsPage />
-        </Route>
-        <Route path="/events/:eventId" exact={true}>
-          <EventDetail />
-        </Route>
-        <ProtectedRoute path="/createEvent">
-          <CreateEvent />
-        </ProtectedRoute>
-      </Switch>
+      <div className="whole-app">
+        <NavBar loaded={loaded} />
+        <Switch>
+          <Route path="/login" exact={true}>
+            <LoginForm />
+          </Route>
+          <Route path="/sign-up" exact={true}>
+            <SignUpForm />
+          </Route>
+          <Route path="/" exact={true}>
+            <Splash />
+          </Route>
+          <Route path="/events" exact={true}>
+            <EventsPage />
+          </Route>
+          <Route path="/events/:eventId" exact={true}>
+            <EventDetail />
+          </Route>
+          <ProtectedRoute path="/createEvent">
+            <CreateEvent />
+          </ProtectedRoute>
+        </Switch>
+      </div>
     </BrowserRouter>
   );
 }

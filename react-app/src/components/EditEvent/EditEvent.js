@@ -52,6 +52,7 @@ function EditEventForm({ closeModal }) {
     };
 
     dispatch(updateEvent(eventData));
+    closeModal();
   };
 
   useEffect(() => {
@@ -79,8 +80,8 @@ function EditEventForm({ closeModal }) {
     if (address.length > 75) {
       errors.push("address: Address must be less than 75 characters");
     }
-    if (address.length < 5) {
-      errors.push("address: Address must be more than 5 characters");
+    if (address.length < 6) {
+      errors.push("address: Address must be more than 6 characters");
     }
     if (ticket_quantity < 1) {
       errors.push("ticket_quantity: Ticket quantity must be more than 0");

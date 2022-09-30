@@ -7,11 +7,11 @@ function Splash() {
     <div className="splash-container">
       <div className="splash-content">
         <img src={splashImg} alt="not found" />
-      </div>
-      <div className="viewallevents">
-        <button>
-          <Link to="/events"> View All Events</Link>
-        </button>
+        <div className="viewallevents">
+          <button className="view-all-button">
+            <Link to="/events"> View All Events</Link>
+          </button>
+        </div>
       </div>
     </div>
   );

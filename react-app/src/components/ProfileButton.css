@@ -11,6 +11,7 @@
   box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
   padding: 12px 16px;
   z-index: 1;
+  left: -110px;
 }
 
 .profile-dropdown-content a {
@@ -33,7 +34,7 @@
 }
 
 .profile-button {
-  background-color: purple;
+  background-color: #5d47ec;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -42,7 +43,7 @@
 }
 
 button {
-  background-color: purple;
+  background-color: #5d47ec;
   color: white;
   padding: 16px;
   font-size: 16px;
