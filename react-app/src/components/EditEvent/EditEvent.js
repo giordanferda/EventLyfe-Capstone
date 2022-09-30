@@ -1,34 +1,41 @@
-import { useState, useMemo, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+import { useState, useEffect, useMemo } from "react";
 import { cityAndStates } from "../states";
-import { createEvent } from "../../store/event";
+import { updateEvent, getEventById } from "../../store/event";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
-function CreateEvent() {
-  const user = useSelector((state) => state.session.user);
+function EditEventForm({ closeModal }) {
+  const { eventId } = useParams();
   const dispatch = useDispatch();
-  const history = useHistory();
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-  const [address, setAddress] = useState("");
-  const [ticket_quantity, setTicketQuantity] = useState(300);
-  const [state, setState] = useState("Alabama");
-  const [city, setCity] = useState("East Rancho Dominguez");
-  const [zipcode, setZipcode] = useState("");
-  const [event_starts, setEventStarts] = useState("");
-  const [event_ends, setEventEnds] = useState("");
-  const [start_time, setStartTime] = useState("");
-  const [end_time, setEndTime] = useState("");
-  const [previewUrl, setPreviewUrl] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const user = useSelector((state) => state.session.user);
+  const event = useSelector((state) => state.event[parseInt(eventId)]);
+  const [name, setName] = useState(event.name);
+  const [description, setDescription] = useState(event.description);
+  const [address, setAddress] = useState(event.address);
+  const [ticket_quantity, setTicketQuantity] = useState(event.ticket_quantity);
+  const [state, setState] = useState(event.state);
+  const [city, setCity] = useState(event.city);
+  const [zipcode, setZipcode] = useState(event.zipcode);
+  const [event_starts, setEventStarts] = useState(event.event_starts);
+  const [event_ends, setEventEnds] = useState(event.event_ends);
+  const [start_time, setStartTime] = useState(event.start_time);
+  const [end_time, setEndTime] = useState(event.end_time);
+  const [previewUrl, setPreviewUrl] = useState(event.preview_image);
   const [errors, setErrors] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+
+  if (event && !loaded) {
+    setLoaded(true);
+  } else if (!event && !loaded) {
+    dispatch(getEventById(eventId)).then(() => setLoaded(true));
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsSubmitted(true);
     setErrors([]);
 
     const eventData = {
+      id: eventId,
       owner_id: user.id,
       name,
       description,
@@ -44,12 +51,7 @@ function CreateEvent() {
       preview_image: previewUrl,
     };
 
-    const newEvent = await dispatch(createEvent(eventData));
-    if (newEvent && newEvent.errors) {
-      setErrors(newEvent.errors);
-    } else if (newEvent && !newEvent.errors) {
-      history.push(`/events/${newEvent.id}`);
-    }
+    dispatch(updateEvent(eventData));
   };
 
   useEffect(() => {
@@ -86,13 +88,30 @@ function CreateEvent() {
     if (ticket_quantity > 2500) {
       errors.push("ticket_quantity: Ticket quantity must be less than 2500");
     }
-    if (!zipcode || !zipcode.match(zipCodeValid)) {
+    if (!zipcode || !JSON.stringify(zipcode).match(zipCodeValid)) {
       errors.push("zipcode: Zipcode must be 5 digits");
     }
+    if (cityAndStates[city] !== state) {
+      errors.push("city: City must be in the selected state");
+    }
     setErrors(errors);
-  }, [previewUrl, name, description, address, zipcode, ticket_quantity]);
+  }, [
+    previewUrl,
+    name,
+    description,
+    address,
+    zipcode,
+    ticket_quantity,
+    state,
+    city,
+  ]);
 
-  const CITIES = useMemo(() => Object.keys(cityAndStates), []);
+  const CITIES = useMemo(() => {
+    const dictionary = cityAndStates;
+    let dictionaryEntries = Object.entries(dictionary);
+    dictionaryEntries = dictionaryEntries.filter((entry) => entry[1] === state);
+    return dictionaryEntries.map((entry) => entry[0]);
+  }, [state]);
   const STATES = useMemo(() => {
     return [...new Set(Object.values(cityAndStates))].sort((a, b) =>
       a.localeCompare(b)
@@ -101,8 +120,8 @@ function CreateEvent() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="CreateEventTitle">Create Your Event</div>
-      {isSubmitted &&
+      <div className="EditEventTitle">Edit Your Event</div>
+      {errors.length > 0 &&
         errors.map((error, i) => (
           <div className="eventErrors">
             <div key={i} className="eventError">
@@ -113,7 +132,7 @@ function CreateEvent() {
       <div>
         <label>Name</label>
         <input
-          className="create-event-input"
+          className="edit-event-input"
           placeholder="Name"
           value={name}
           required
@@ -124,7 +143,7 @@ function CreateEvent() {
       <div>
         <label>Description</label>
         <input
-          className="create-event-description"
+          className="edit-event-description"
           placeholder="Description"
           required
           value={description}
@@ -135,7 +154,7 @@ function CreateEvent() {
       <div>
         <label>Address</label>
         <input
-          className="create-event-Address"
+          className="edit-event-Address"
           placeholder="Address"
           required
           value={address}
@@ -146,7 +165,7 @@ function CreateEvent() {
       <div>
         <label>Ticket quantity</label>
         <input
-          className="create-event-Ticket-quantity"
+          className="edit-event-Ticket-quantity"
           placeholder="Ticket Quantity"
           required
           value={ticket_quantity}
@@ -169,7 +188,9 @@ function CreateEvent() {
 
       <select
         onChange={(e) => {
-          setCity(e.target.value);
+          const city = e.target.value;
+          setCity(city);
+          setState(cityAndStates[city]);
         }}
       >
         {CITIES.map((city) => (
@@ -181,7 +202,7 @@ function CreateEvent() {
       <div>
         <label>Zip Code</label>
         <input
-          className="create-event-zipcode"
+          className="edit-event-zipcode"
           placeholder="Zip Code"
           required
           value={zipcode}
@@ -204,7 +225,7 @@ function CreateEvent() {
       <div>
         <label>Event Starts</label>
         <input
-          className="create-event-start-date"
+          className="edit-event-start-date"
           placeholder="Event Starts"
           required
           value={event_starts}
@@ -215,7 +236,7 @@ function CreateEvent() {
       <div>
         <label>Event Ends</label>
         <input
-          className="create-event-end-date"
+          className="edit-event-end-date"
           placeholder="Event Ends"
           required
           value={event_ends}
@@ -227,7 +248,7 @@ function CreateEvent() {
       <div>
         <label>Start Time</label>
         <input
-          className="create-event-start-time"
+          className="edit-event-start-time"
           placeholder="Start Time"
           required
           value={start_time}
@@ -238,7 +259,7 @@ function CreateEvent() {
       <div>
         <label>End Time</label>
         <input
-          className="create-event-end-time"
+          className="edit-event-end-time"
           placeholder="End Time"
           required
           value={end_time}
@@ -246,9 +267,11 @@ function CreateEvent() {
           onChange={(e) => setEndTime(e.target.value)}
         ></input>
       </div>
-      <button className="submitEvent">Create Event</button>
+      <button className="submitEvent" disabled={errors.length > 0}>
+        Edit Your Event
+      </button>
     </form>
   );
 }
 
-export default CreateEvent;
+export default EditEventForm;

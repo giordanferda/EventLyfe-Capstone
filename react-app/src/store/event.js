@@ -59,7 +59,7 @@ export const createEvent = (event) => async (dispatch) => {
       return data.errors;
     }
   } else {
-    console.log(await res.json());
+    await res.json();
     return ["Bad Data, Please try again"];
   }
 };

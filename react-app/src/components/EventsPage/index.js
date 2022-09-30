@@ -1,7 +1,5 @@
-import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getEvents } from "../../store/event";
-import { useParams, useHistory } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import EventCard from "../EventCard";
 
 function EventsPage() {

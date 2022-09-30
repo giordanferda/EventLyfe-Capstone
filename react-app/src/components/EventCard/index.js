@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "./EventCard.css";
 // import defaultimg from "./defaultimg.png";
 
