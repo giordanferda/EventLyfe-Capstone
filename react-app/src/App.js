@@ -12,6 +12,8 @@ import { getEvents } from "./store/event";
 import EventDetail from "./components/EventDetail/EventDetail";
 import CreateEvent from "./components/CreateEvent/CreateEvent";
 import "./index.css";
+import * as reviewActions from "./store/review";
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -22,6 +24,9 @@ function App() {
       await dispatch(getEvents());
       setLoaded(true);
     })();
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(reviewActions.getReviews());
   }, [dispatch]);
 
   if (!loaded) {
