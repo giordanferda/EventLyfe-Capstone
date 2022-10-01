@@ -1,3 +1,5 @@
+import { getEventById } from "./event";
+
 //Types
 
 const GET_ALL = "reviews/GET_ALL";
@@ -43,7 +45,7 @@ export const getReviews = () => async (dispatch) => {
   }
   return res;
 };
-
+// get current users review
 export const getUserReview = () => async (dispatch) => {
   const res = await fetch(`/api/reviews/current`);
   if (res.ok) {
@@ -53,6 +55,7 @@ export const getUserReview = () => async (dispatch) => {
   return res;
 };
 
+// create a review
 export const createReview = (review) => async (dispatch) => {
   const res = await fetch("/api/reviews/", {
     method: "POST",
@@ -64,7 +67,88 @@ export const createReview = (review) => async (dispatch) => {
   if (res.ok) {
     const newReview = await res.json();
     dispatch(create(newReview));
-    dispatch(get);
+    dispatch(getEventById(review.event_id));
+    return newReview;
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ["Bad Data, Please try again."];
   }
   return res;
 };
+
+// update a review
+
+export const updateReview = (review, id) => async (dispatch) => {
+  const res = await fetch(`/api/reviews/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(review),
+  });
+  if (res.ok) {
+    const updatedReview = await res.json();
+    dispatch(update(updatedReview));
+    return updatedReview;
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ["Bad Data, Please try again."];
+  }
+  return res;
+};
+
+//delete a review
+export const deleteReviewById = (id, event_id) => async (dispatch) => {
+  const res = await fetch(`/api/reviews/${id}`, {
+    method: "DELETE",
+  });
+  if (res.ok) {
+    dispatch(deleteReview(id));
+    dispatch(getEventById(event_id));
+  } else if (res.status < 500) {
+    const data = await res.json();
+    if (data.errors) {
+      return data;
+    }
+  } else {
+    return ["Bad Data, Please try again."];
+  }
+  return res;
+};
+
+//Reducer
+
+export default function reviewReducer(state = {}, action) {
+  let newState = { ...state };
+  switch (action.type) {
+    case GET_ALL:
+      action.payload.reviews.forEach((review) => {
+        newState[review.id] = review;
+      });
+      return newState;
+    case GET_CURRENT:
+      action.payload.reviews.forEach((review) => {
+        newState[review.id] = review;
+      });
+      return newState;
+    case CREATE:
+      newState[action.payload.id] = action.payload;
+      return newState;
+    case UPDATE:
+      newState[action.payload.id] = action.payload;
+      return newState;
+    case DELETE:
+      delete newState[action.payload];
+      return newState;
+    default:
+      return state;
+  }
+}
