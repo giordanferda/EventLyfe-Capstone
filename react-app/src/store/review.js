@@ -56,18 +56,18 @@ export const getUserReview = () => async (dispatch) => {
 };
 
 // create a review
-export const createReview = (review) => async (dispatch) => {
+export const createReview = (reviews) => async (dispatch) => {
   const res = await fetch("/api/reviews/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(review),
+    body: JSON.stringify(reviews),
   });
   if (res.ok) {
     const newReview = await res.json();
     dispatch(create(newReview));
-    dispatch(getEventById(review.event_id));
+    dispatch(getEventById(reviews.event_id));
     return newReview;
   } else if (res.status < 500) {
     const data = await res.json();

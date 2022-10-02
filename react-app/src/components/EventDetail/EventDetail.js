@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { deleteEventById } from "../../store/event";
-import DisplayEveryReview from "../Reviews/DisplayReviews/DisplayReviews";
 import EditEventModal from "../EditEvent/EditEventModal";
 import ReviewModal from "../Reviews/CreateReview/ReviewModal";
+import ReviewCard from "../Reviews/ReviewCard/ReviewCard";
 //dummy commit
 function EventDetail() {
   const { eventId } = useParams();
@@ -66,8 +66,18 @@ function EventDetail() {
         {event?.start_time} - {event?.end_time}
       </div>
       <div className="event-detail-description">{event?.description}</div>
-      <div>
-        <DisplayEveryReview />{" "}
+      <div className="business-reviews-container">
+        {/* Show every Review Card Here */}
+        <div className="reviews-header header">Reviews</div>
+        <div className="reviews-inner-container">
+          {event?.review_ids.length ? (
+            event?.review_ids.map((reviewId) => (
+              <ReviewCard key={reviewId} review={reviews[reviewId]} />
+            ))
+          ) : (
+            <div style={{ paddingBottom: "25px" }}>No reviews. Yet...</div>
+          )}
+        </div>
       </div>
     </div>
   );

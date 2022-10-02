@@ -65,7 +65,7 @@ def edit_review(id):
             review.stars = form.stars.data
             review.review = form.review.data
             db.session.commit()
-            return review.to_dict()
+            return jsonify(review.to_dict()), 200
     else:
         return {'error':'Unathorized' }, 401
 
@@ -76,6 +76,9 @@ def edit_review(id):
 @login_required
 def delete_review(id):
     review = Review.query.filter(Review.id == id).first()
+    print(review)
+    print(current_user.id)
+    print(review.user_id)
     if review.user_id == current_user.id:
         db.session.delete(review)
         db.session.commit()

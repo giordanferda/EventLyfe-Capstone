@@ -1,29 +1,30 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import "./CreateReview.css";
+import "./EditReview.css";
 import * as reviewActions from "../../../store/review";
 
-const CreateReview = ({ event, closeModal }) => {
-  const id = event.id;
+const EditReview = ({ closeModal, rev }) => {
+  //   const id = rev?.event_id;
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const [review, setReview] = useState("");
-  const [stars, setStars] = useState(1);
+  const [review, setReview] = useState(rev?.review);
+  const [stars, setStars] = useState(rev?.stars);
   const [errors, setErrors] = useState([]);
 
-  const reviewData = {
-    user_id: sessionUser.id,
-    stars: stars,
-    review,
-    event_id: id,
-  };
-  //   console.log(reviewData);
+  console.log(rev);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors([]);
+    const reviewData = {
+      user_id: sessionUser.id,
+      stars: stars,
+      review,
+      event_id: rev?.event_id,
+    };
 
-    const data = await dispatch(reviewActions.createReview(reviewData));
+    const data = await dispatch(
+      reviewActions.updateReview(reviewData, rev?.id)
+    );
     if (data && data.errors) {
       setErrors(data.errors);
     } else {
@@ -34,7 +35,7 @@ const CreateReview = ({ event, closeModal }) => {
   };
   return (
     <form className="review-form" onSubmit={handleSubmit}>
-      <div className="review-Title">Write Your Review</div>
+      <div className="review-Edit-Title">Edit Your Review</div>
       <div className="star-review-input">
         <input
           value={stars}
@@ -46,17 +47,23 @@ const CreateReview = ({ event, closeModal }) => {
         />
 
         <input
+          className="make-bigger"
+          placeholder="Write a review"
           value={review}
-          onChange={(e) => setReview(e.target.value)}
-          placeholder="Review"
-          type="text"
+          onChange={(e) => {
+            const textValue = e.target.value;
+            if (textValue.length > 255) {
+              return;
+            }
+            setReview(e.target.value);
+          }}
           required
         />
       </div>
       <button
         className="submitButton-review"
         type="submit"
-        disabled={review.length <= 3}
+        disabled={rev?.length <= 3}
       >
         Submit Review
       </button>
@@ -64,4 +71,4 @@ const CreateReview = ({ event, closeModal }) => {
   );
 };
 
-export default CreateReview;
+export default EditReview;
