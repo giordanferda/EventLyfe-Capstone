@@ -80,6 +80,6 @@ def delete_event(event_id):
     if event.owner_id == current_user.id:
         db.session.delete(event)
         db.session.commit()
-        return jsonify({"message": "Business successfully deleted", "status-code": 200}), 200
+        return jsonify({"message": "Event successfully deleted", "status-code": 200}), 200
     else:
         return {'errors': 'You are not authorized to delete this event'}, 401
