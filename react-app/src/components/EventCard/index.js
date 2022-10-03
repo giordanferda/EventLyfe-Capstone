@@ -1,5 +1,6 @@
 import "./EventCard.css";
 // import defaultimg from "./defaultimg.png";
+import ShowStars from "../ShowStars";
 
 function EventCard({ redirectToShow, event }) {
   return (
@@ -25,6 +26,18 @@ function EventCard({ redirectToShow, event }) {
         {event.start_time} - {event.end_time}
       </div>
       <div className="card-description">{event.description}</div>
+      <div className="card-review-data">
+        <div className="review-avg-stars">
+          <ShowStars rating={event?.avg_rating} />
+        </div>
+        <div className="review-count">
+          {event?.review_ids.length == 1 ? (
+            <div>{event?.review_ids.length} review</div>
+          ) : (
+            <div>{event?.review_ids.length} reviews</div>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

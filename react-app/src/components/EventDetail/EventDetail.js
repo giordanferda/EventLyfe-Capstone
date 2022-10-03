@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import { deleteEventById } from "../../store/event";
 import EditEventModal from "../EditEvent/EditEventModal";
+import CreateReview from "../Reviews/CreateReview/CreateReview";
 import ReviewModal from "../Reviews/CreateReview/ReviewModal";
 import ReviewCard from "../Reviews/ReviewCard/ReviewCard";
 //dummy commit
@@ -20,8 +21,10 @@ function EventDetail() {
     await dispatch(deleteEventById(eventId));
     history.push("/events");
   }
+
   const alreadyReviewed = () => {
     let alreadyReviewedByUser = false;
+    if (!event?.review_ids) return;
     for (let i of event?.review_ids) {
       if (reviews[i]?.user_id === sessionUser.id) {
         alreadyReviewedByUser = true;
@@ -29,6 +32,16 @@ function EventDetail() {
     }
     return alreadyReviewedByUser;
   };
+
+  // function alreadyReviewed() {
+  //   let alreadyReviewedByUser = false;
+  //   for (let i = 1; i < event?.review_ids.length; i++) {
+  //     if (event.review_ids[i] === sessionUser.id) {
+  //       alreadyReviewedByUser = true;
+  //     }
+  //   }
+  //   return alreadyReviewedByUser;
+  // }
 
   if (sessionUser && event) {
     if (sessionUser.id === event.event_owner.id) {
@@ -42,7 +55,7 @@ function EventDetail() {
         <img src={event?.preview_image} alt="event" />
         <div>
           {sessionUser &&
-            sessionUser.id !== event?.owner_id &&
+            sessionUser.id !== event?.event_owner.id &&
             alreadyReviewed() === false && (
               <div>
                 <ReviewModal event={event} />

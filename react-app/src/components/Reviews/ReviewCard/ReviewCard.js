@@ -4,9 +4,11 @@ import "./ReviewCard.css";
 import { deleteReviewById } from "../../../store/review";
 import ShowStars from "../../ShowStars";
 import EditReviewModal from "../EditReview/EditReviewModal";
+import { useHistory } from "react-router-dom";
 
 function ReviewCard({ review }) {
   const sessionUser = useSelector((state) => state.session.user);
+  const history = useHistory();
   const dispatch = useDispatch();
   const handleDelete = async (e, id) => {
     e.preventDefault();

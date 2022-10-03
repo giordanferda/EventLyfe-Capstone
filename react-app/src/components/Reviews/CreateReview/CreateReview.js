@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./CreateReview.css";
 import * as reviewActions from "../../../store/review";
 
@@ -11,30 +11,56 @@ const CreateReview = ({ event, closeModal }) => {
   const [stars, setStars] = useState(1);
   const [errors, setErrors] = useState([]);
 
-  const reviewData = {
-    user_id: sessionUser.id,
-    stars: stars,
-    review,
-    event_id: id,
-  };
   //   console.log(reviewData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrors([]);
+    // setErrors([]);
 
-    const data = await dispatch(reviewActions.createReview(reviewData));
-    if (data && data.errors) {
-      setErrors(data.errors);
-    } else {
-      setReview("");
-      setStars("");
-      closeModal();
+    const reviewData = {
+      user_id: sessionUser.id,
+      stars: stars,
+      review: review,
+      event_id: id,
+    };
+
+    let errors = [];
+    if (review.length < 3) {
+      errors.push("Review must be at least 3 characters long");
+    }
+    setErrors(errors);
+    console.log(errors, "this is errors in create review");
+    if (review.length >= 3) {
+      // const data = await dispatch(reviewActions.createReview(reviewData));
+      // if (data && data.errors) {
+      //   setErrors(data.errors);
+      // } else {
+      //   setReview("");
+      //   setStars("");
+      //   closeModal();
+      // }
+      dispatch(reviewActions.createReview(reviewData));
     }
   };
+
+  // useEffect(() => {
+  // const errors = [];
+  // if (review.length < 3) {
+  //   errors.push("Review must be at least 3 characters long");
+  // }
+  // setErrors(errors);
+  // }, [review]);
   return (
     <form className="review-form" onSubmit={handleSubmit}>
       <div className="review-Title">Write Your Review</div>
+      {/* {errors.length > 0 && */}
+      {errors.map((error, i) => (
+        <div className="reviewErrors">
+          <div key={i} className="reviewError">
+            {error}
+          </div>
+        </div>
+      ))}
       <div className="star-review-input">
         <input
           value={stars}
@@ -56,7 +82,7 @@ const CreateReview = ({ event, closeModal }) => {
       <button
         className="submitButton-review"
         type="submit"
-        disabled={review.length <= 3}
+        // disabled={review.length <= 3}
       >
         Submit Review
       </button>
