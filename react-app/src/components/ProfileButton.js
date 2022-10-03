@@ -11,8 +11,8 @@ function ProfileButton({ user }) {
       <div className="profile-button">Profile</div>
       <div className="profile-dropdown-content">
         {/* <Link className='drop-buttons' to='my-events'/> */}
-        <Link className="drop-buttons" to="/createEvent">
-          Create Event
+        <Link className="drop-buttons" to="/manageEvents">
+          Manage Events
         </Link>
         <Link
           className="drop-buttons"

@@ -8,7 +8,7 @@ const CreateReview = ({ event, closeModal }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [review, setReview] = useState("");
-  const [stars, setStars] = useState(1);
+  const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
 
   //   console.log(reviewData);
@@ -53,6 +53,9 @@ const CreateReview = ({ event, closeModal }) => {
   return (
     <form className="review-form" onSubmit={handleSubmit}>
       <div className="review-Title">Write Your Review</div>
+      <div className="review-one-per-event">
+        You are only able to create 1 review per Event.
+      </div>
       {/* {errors.length > 0 && */}
       {errors.map((error, i) => (
         <div className="reviewErrors">
