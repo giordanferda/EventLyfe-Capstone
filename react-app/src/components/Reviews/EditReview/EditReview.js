@@ -11,8 +11,6 @@ const EditReview = ({ closeModal, rev }) => {
   const [stars, setStars] = useState(rev?.stars);
   const [errors, setErrors] = useState([]);
 
-  console.log(rev);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const reviewData = {
@@ -21,21 +19,37 @@ const EditReview = ({ closeModal, rev }) => {
       review,
       event_id: rev?.event_id,
     };
+    let errors = [];
+    if (review.length <= 3) {
+      errors.push("Review must be at least 4 characters long");
+    }
+    console.log(errors, "this is errors in edit review");
 
-    const data = await dispatch(
-      reviewActions.updateReview(reviewData, rev?.id)
-    );
-    if (data && data.errors) {
-      setErrors(data.errors);
-    } else {
+    setErrors(errors);
+    if (review.length > 3) {
+      dispatch(reviewActions.updateReview(reviewData, rev?.id));
       setReview("");
       setStars("");
       closeModal();
     }
+    // const data = await dispatch(
+    //   reviewActions.updateReview(reviewData, rev?.id)
+    // );
+    // if (data && data.errors) {
+    //   setErrors(data.errors);
+    // } else {
+    // }
   };
   return (
     <form className="review-form" onSubmit={handleSubmit}>
       <div className="review-Edit-Title">Edit Your Review</div>
+      {errors.map((error, i) => (
+        <div className="reviewErrors">
+          <div key={i} className="reviewError">
+            {error}
+          </div>
+        </div>
+      ))}
       <div className="star-review-input">
         <input
           value={stars}
@@ -51,20 +65,12 @@ const EditReview = ({ closeModal, rev }) => {
           placeholder="Write a review"
           value={review}
           onChange={(e) => {
-            const textValue = e.target.value;
-            if (textValue.length > 255) {
-              return;
-            }
             setReview(e.target.value);
           }}
           required
         />
       </div>
-      <button
-        className="submitButton-review"
-        type="submit"
-        disabled={rev?.length <= 3}
-      >
+      <button className="submitButton-review" type="submit">
         Submit Review
       </button>
     </form>

@@ -3,13 +3,13 @@ from app.models import db, Review
 def seeded_reviews():
   demo_reviews = [
     Review(
-      event_id=1, user_id=1, stars=5, review="This event is amazing!"
+      event_id=1, user_id=4, stars=5, review="This event is amazing!"
     ),
     Review(
-      event_id=2, user_id=2, stars=2, review="This event is alright!"
+      event_id=2, user_id=4, stars=2, review="This event is alright!"
     ),
     Review(
-      event_id=3, user_id=3, stars=1, review="This event is whatever!"
+      event_id=3, user_id=4, stars=1, review="This event is whatever!"
     )
   ]
 
