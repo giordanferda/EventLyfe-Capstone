@@ -25,21 +25,21 @@ const CreateReview = ({ event, closeModal }) => {
     };
 
     let errors = [];
-    if (review.length < 3) {
-      errors.push("Review must be at least 3 characters long");
+    if (review.length <= 3) {
+      errors.push("Review must be at least 4 characters long");
     }
     setErrors(errors);
-    console.log(errors, "this is errors in create review");
-    if (review.length >= 3) {
+    // console.log(errors, "this is errors in create review");
+    if (review.length > 3) {
       // const data = await dispatch(reviewActions.createReview(reviewData));
       // if (data && data.errors) {
       //   setErrors(data.errors);
       // } else {
-      //   setReview("");
-      //   setStars("");
-      //   closeModal();
       // }
       dispatch(reviewActions.createReview(reviewData));
+      setReview("");
+      setStars("");
+      closeModal();
     }
   };
 
