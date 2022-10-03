@@ -1,0 +1,22 @@
+.flex-container {
+  display: flex;
+}
+
+.flex-child {
+  flex: 1;
+  border-bottom: 33%;
+}
+
+.flex-child:first-child {
+  margin-right: 10px;
+}
+
+.loginImg {
+  width: 100%;
+  height: 100%;
+}
+
+.left-login {
+  display: flex;
+  align-items: center;
+}
