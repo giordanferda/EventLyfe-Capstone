@@ -1,8 +1,12 @@
 import "./EventCard.css";
+
 // import defaultimg from "./defaultimg.png";
-import ShowStars from "../ShowStars";
 
 function EventCard({ redirectToShow, event }) {
+  function redirectToShow() {
+    window.location.href = `/events/${event.id}`;
+  }
+
   return (
     <div className="event-card" to={`/events/${event?.id}`}>
       <div className="event-card-outer">
@@ -27,9 +31,6 @@ function EventCard({ redirectToShow, event }) {
       </div>
       <div className="card-description">{event.description}</div>
       <div className="card-review-data">
-        <div className="review-avg-stars">
-          <ShowStars rating={event?.avg_rating} />
-        </div>
         <div className="review-count">
           {event?.review_ids.length == 1 ? (
             <div>{event?.review_ids.length} review</div>

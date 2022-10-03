@@ -62,7 +62,7 @@ const LoginForm = () => {
             />
             <button type="submit">Log in</button>
             <span> or </span>
-            <Link to="/signup">Sign up Here</Link>
+            <Link to="/sign-up">Sign up Here</Link>
           </div>
           <button
             onClick={() => {

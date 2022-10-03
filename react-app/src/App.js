@@ -12,6 +12,7 @@ import { getEvents } from "./store/event";
 import EventDetail from "./components/EventDetail/EventDetail";
 import CreateEvent from "./components/CreateEvent/CreateEvent";
 import "./index.css";
+import ManageEvents from "./components/ManageEvents/ManageEvents";
 import * as reviewActions from "./store/review";
 
 function App() {
@@ -41,7 +42,7 @@ function App() {
           <Route path="/login" exact={true}>
             <LoginForm />
           </Route>
-          <Route path="/signup" exact={true}>
+          <Route path="/sign-up" exact={true}>
             <SignUpForm />
           </Route>
           <Route path="/" exact={true}>
@@ -53,8 +54,11 @@ function App() {
           <Route path="/events/:eventId" exact={true}>
             <EventDetail />
           </Route>
-          <ProtectedRoute path="/createEvent">
+          <ProtectedRoute path="/createEvent" exact={true}>
             <CreateEvent />
+          </ProtectedRoute>
+          <ProtectedRoute path="/manageEvents" exact={true}>
+            <ManageEvents />
           </ProtectedRoute>
         </Switch>
       </div>

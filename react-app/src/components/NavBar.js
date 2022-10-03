@@ -26,6 +26,11 @@ const NavBar = ({ loaded }) => {
             <img className="logo-img" alt="" src={logo} />
           </NavLink>
         </div>
+        <div>
+          <NavLink to="/createEvent" exact={true} activeClassName="active">
+            <button>Create Event</button>
+          </NavLink>
+        </div>
         {currentUser ? (
           <ProfileButton user={currentUser} />
         ) : (

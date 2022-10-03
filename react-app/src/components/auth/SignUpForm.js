@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import signupImg from "../login-signup.png";
+import * as sessionActons from "../../store/session";
+
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
   const [username, setUsername] = useState("");
@@ -11,20 +13,38 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    setIsSubmitted(true);
     if (password === repeatPassword) {
+      setErrors([]);
       const data = await dispatch(
         signUp(username, firstName, lastName, email, password)
       );
-      if (data) {
-        setErrors(data);
+      if (data && data.errors) {
+        setErrors(data.errors);
       }
+    } else {
+      return setErrors([
+        "Confirm Password field must be the same as the Password field",
+      ]);
     }
   };
+
+  useEffect(() => {
+    const errors = [];
+    if (password !== repeatPassword) {
+      errors.push(
+        "Confirm Password field must be the same as the Password field"
+      );
+    }
+    setErrors(errors);
+  }, [password, repeatPassword]);
 
   const updateUsername = (e) => {
     setUsername(e.target.value);

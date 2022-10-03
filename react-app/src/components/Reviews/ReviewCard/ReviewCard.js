@@ -22,10 +22,8 @@ function ReviewCard({ review }) {
         <div className="review-card-user">{review?.user.username}</div>
       </div>
       <div className="stars-review">
-        <div>
-          <ShowStars rating={review?.stars} />
-          {new Date(review?.created_at).toLocaleDateString()}
-        </div>
+        <div>{new Date(review?.created_at).toLocaleDateString()}</div>
+        <div>✰ {review?.stars}</div>
         <div className="users-review">{review?.review}</div>
         {review?.user_id == sessionUser?.id ? (
           <>
