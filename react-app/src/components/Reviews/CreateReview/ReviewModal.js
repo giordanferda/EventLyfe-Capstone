@@ -8,11 +8,17 @@ function ReviewModal({ event }) {
   const closeModal = () => {
     setShowModal(false);
   };
+
   return (
     <>
-      <button className="review-button" onClick={() => setShowModal(true)}>
-        <div className="review-button-star">✰</div>
-        <div className="review-button-text">Write a Review</div>
+      <button
+        className="review-button"
+        onClick={(e) => {
+          e.stopImmediatePropagation();
+          setShowModal(true);
+        }}
+      >
+        Write a Review
       </button>
       {showModal && (
         <Modal className="test" onClose={() => setShowModal(false)}>

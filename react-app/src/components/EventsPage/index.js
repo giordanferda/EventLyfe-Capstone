@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import EventCard from "../EventCard";
+import "./EventsPage.css";
 
 function EventsPage() {
   const history = useHistory();

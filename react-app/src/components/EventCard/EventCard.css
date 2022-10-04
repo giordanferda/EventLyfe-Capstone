@@ -1,0 +1,37 @@
+.event-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.25vw;
+  width: 25vw;
+  padding: 10px;
+  outline: 1px solid #e6e6e6;
+  border: none;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+  background-color: #ffffff;
+}
+
+.event-card:hover {
+  box-shadow: 5px 5px 15px 10px rgba(0, 0, 0, 0.2);
+}
+
+.event-card > a {
+  cursor: pointer;
+}
+
+.event-card-image {
+  display: flex;
+  flex-direction: column;
+  max-width: 480px;
+  max-height: 320px;
+  width: 100%;
+  height: 100%;
+}
+
+.event-card-name {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #000;
+}

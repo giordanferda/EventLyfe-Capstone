@@ -1,0 +1,10 @@
+.Eventpage-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-content: center;
+  align-content: center;
+  padding: 30px 60px;
+  align-items: center;
+  background-color: #f5f5f5;
+  grid-gap: 20px;
+}
