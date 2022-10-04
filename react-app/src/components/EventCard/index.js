@@ -12,6 +12,7 @@ function EventCard({ redirectToShow, event }) {
       <div className="event-card-outer">
         <div onClick={() => redirectToShow(event?.id)}>
           <img
+            className="event-card-image"
             src={event.preview_image}
             alt="event"
             // onError={(e) => (e.target.src = defaultimg)}

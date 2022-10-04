@@ -19,9 +19,18 @@
   align-items: center;
   padding: 5px 10px;
   height: 80px;
+  gap: 5px;
 }
+
+/* .navbar-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+} */
 
 .navbar-links {
   display: flex;
+  justify-content: flex-end;
+  align-items: center;
   gap: 10px;
 }
