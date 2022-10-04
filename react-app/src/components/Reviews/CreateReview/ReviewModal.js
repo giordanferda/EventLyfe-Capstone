@@ -13,8 +13,7 @@ function ReviewModal({ event }) {
     <>
       <button
         className="review-button"
-        onClick={(e) => {
-          e.stopImmediatePropagation();
+        onClick={() => {
           setShowModal(true);
         }}
       >
