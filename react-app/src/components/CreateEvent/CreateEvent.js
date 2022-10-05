@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { cityAndStates } from "../states";
 import { createEvent } from "../../store/event";
+import "./CreateEvent.css";
 
 function CreateEvent() {
   const user = useSelector((state) => state.session.user);
@@ -115,154 +116,194 @@ function CreateEvent() {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="CreateEventTitle">Create Your Event</div>
-      {errors.length > 0 &&
-        errors.map((error, i) => (
-          <div className="eventErrors">
-            <div key={i} className="eventError">
-              {error.split(": ")[1]}
+    <div className="create-event-container">
+      <form onSubmit={handleSubmit} className="form-event-column">
+        <h1 className="CreateEventTitle">Create Your Event</h1>
+        <div className="create-event-errors">
+          {errors.length > 0 &&
+            errors.map((error, i) => (
+              <div className="eventErrors">
+                <div key={i} className="eventError">
+                  {error.split(": ")[1]}
+                </div>
+              </div>
+            ))}
+        </div>
+        <div className="event-first-container">
+          <h1 className="eventh1">
+            {" "}
+            <i class="fa-regular fa-file-lines"></i> Basic Info
+          </h1>
+          <p>
+            Name your event and tell event-goers why they should come. Add
+            details that highlight what makes it unique.
+          </p>
+          <div className="event-first-container-description">
+            <label>Event Name</label>
+            <input
+              className="event-first-container-input"
+              placeholder="Event Title"
+              value={name}
+              required
+              type="text"
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
+          <div className="event-first-container-description">
+            <label>Description</label>
+            <input
+              className="event-first-container-input"
+              placeholder="Description"
+              required
+              value={description}
+              type="text"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+            <div className="create-event-image">
+              <label>Add Image For Event </label>
+              <label htmlFor="previewUrl" />
+              <input
+                type="url"
+                name="previewUrl"
+                value={previewUrl}
+                className="event-first-container-input"
+                placeholder="Preview Image URL"
+                onChange={(e) => setPreviewUrl(e.target.value)}
+                required
+              />
             </div>
           </div>
-        ))}
-      <div>
-        <label>Name</label>
-        <input
-          className="create-event-input"
-          placeholder="Name"
-          value={name}
-          required
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-        ></input>
-      </div>
-      <div>
-        <label>Description</label>
-        <input
-          className="create-event-description"
-          placeholder="Description"
-          required
-          value={description}
-          type="text"
-          onChange={(e) => setDescription(e.target.value)}
-        ></input>
-      </div>
-      <div>
-        <label>Address</label>
-        <input
-          className="create-event-Address"
-          placeholder="Address"
-          required
-          value={address}
-          type="text"
-          onChange={(e) => setAddress(e.target.value)}
-        ></input>
-      </div>
-      <div>
-        <label>Ticket quantity</label>
-        <input
-          className="create-event-Ticket-quantity"
-          placeholder="Ticket Quantity"
-          required
-          value={ticket_quantity}
-          type="number"
-          onChange={(e) => setTicketQuantity(e.target.value)}
-        ></input>
-      </div>
-      <select
-        value={state}
-        onChange={(e) => {
-          setState(e.target.value);
-        }}
-      >
-        {STATES.map((state) => (
-          <option key={state} value={state}>
-            {state}
-          </option>
-        ))}
-      </select>
+        </div>
+        <div className="divider" />
+        <div className="event-first-container ">
+          <h1 className="eventh1">
+            <i class="fa-solid fa-calendar-days"></i> Location & Event Date/Time
+          </h1>
+          <p>
+            Help people discover your event and let attendees know where and
+            when to show up.
+          </p>
+          <div className="event-first-container-description">
+            <label>Address</label>
+            <input
+              className="event-first-container-input"
+              placeholder="Address"
+              required
+              value={address}
+              type="text"
+              onChange={(e) => setAddress(e.target.value)}
+            />
+          </div>
+          {/* <div className="event-first-container-description">
+            <input
+              className="event-first-container-input"
+              placeholder="Ticket Quantity"
+              required
+              value={ticket_quantity}
+              type="number"
+              onChange={(e) => setTicketQuantity(e.target.value)}
+            />
+          </div> */}
+          <div className="event-first-container-description">
+            <label> State</label>
+            <select
+              value={state}
+              onChange={(e) => {
+                setState(e.target.value);
+              }}
+              className="event-first-container-input"
+            >
+              {STATES.map((state) => (
+                <option key={state} value={state}>
+                  {state}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="create-event-city-zip">
+            <div className="event-first-container-description">
+              <label> City </label>
+              <select
+                onChange={(e) => {
+                  setCity(e.target.value);
+                }}
+                className="event-first-container-input"
+              >
+                {CITIES.map((city) => (
+                  <option key={city} value={city}>
+                    {city}
+                  </option>
+                ))}
+              </select>
+            </div>
 
-      <select
-        onChange={(e) => {
-          setCity(e.target.value);
-        }}
-      >
-        {CITIES.map((city) => (
-          <option key={city} value={city}>
-            {city}
-          </option>
-        ))}
-      </select>
-      <div>
-        <label>Zip Code</label>
-        <input
-          className="create-event-zipcode"
-          placeholder="Zip Code"
-          required
-          value={zipcode}
-          type="number"
-          onChange={(e) => setZipcode(e.target.value)}
-        ></input>
-      </div>
-      <div>
-        <label htmlFor="previewUrl" />
-        <input
-          type="url"
-          name="previewUrl"
-          value={previewUrl}
-          className="previewUrl"
-          placeholder="Preview Image URL"
-          onChange={(e) => setPreviewUrl(e.target.value)}
-          required
-        />
-      </div>
-      <div>
-        <label>Event Starts</label>
-        <input
-          className="create-event-start-date"
-          placeholder="Event Starts"
-          required
-          value={event_starts}
-          type="date"
-          onChange={(e) => setEventStarts(e.target.value)}
-        ></input>
-      </div>
-      <div>
-        <label>Event Ends</label>
-        <input
-          className="create-event-end-date"
-          placeholder="Event Ends"
-          required
-          value={event_ends}
-          type="date"
-          onChange={(e) => setEventEnds(e.target.value)}
-        ></input>
-      </div>
-
-      <div>
-        <label>Start Time</label>
-        <input
-          className="create-event-start-time"
-          placeholder="Start Time"
-          required
-          value={start_time}
-          type="time"
-          onChange={(e) => setStartTime(e.target.value)}
-        ></input>
-      </div>
-      <div>
-        <label>End Time</label>
-        <input
-          className="create-event-end-time"
-          placeholder="End Time"
-          required
-          value={end_time}
-          type="time"
-          onChange={(e) => setEndTime(e.target.value)}
-        ></input>
-      </div>
-      <button className="submitEvent">Create Event</button>
-    </form>
+            <div className="event-first-container-description">
+              <label>Zip Code </label>
+              <input
+                className="event-first-container-input"
+                placeholder="Zip Code"
+                required
+                value={zipcode}
+                type="number"
+                onChange={(e) => setZipcode(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="event-first-container">
+          <div className="create-event-city-zip">
+            <div className="event-first-container-description">
+              <label>Event Starts</label>
+              <input
+                className="event-first-container-input"
+                placeholder="Event Starts"
+                required
+                value={event_starts}
+                type="date"
+                onChange={(e) => setEventStarts(e.target.value)}
+              />
+            </div>
+            <div className="event-first-container-description">
+              <label>Event Ends</label>
+              <input
+                className="event-first-container-input"
+                placeholder="Event Ends"
+                required
+                value={event_ends}
+                type="date"
+                onChange={(e) => setEventEnds(e.target.value)}
+              />
+            </div>
+          </div>
+          <div className="create-event-city-zip">
+            <div className="event-first-container-description">
+              <label>Start Time</label>
+              <input
+                className="event-first-container-input"
+                placeholder="Start Time"
+                required
+                value={start_time}
+                type="time"
+                onChange={(e) => setStartTime(e.target.value)}
+              />
+            </div>
+            <div className="event-first-container-description">
+              <label>End Time</label>
+              <input
+                className="event-first-container-input"
+                placeholder="End Time"
+                required
+                value={end_time}
+                type="time"
+                onChange={(e) => setEndTime(e.target.value)}
+              />
+            </div>
+          </div>
+        </div>
+        <button className="submitEvent">Create Event</button>
+      </form>
+    </div>
   );
 }
 

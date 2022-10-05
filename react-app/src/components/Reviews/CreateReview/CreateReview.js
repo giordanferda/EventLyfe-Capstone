@@ -57,13 +57,15 @@ const CreateReview = ({ event, closeModal }) => {
         You are only able to create 1 review per Event.
       </div>
       {/* {errors.length > 0 && */}
-      {errors.map((error, i) => (
-        <div className="reviewErrors">
-          <div key={i} className="reviewError">
-            {error}
+      <div className="create-event-errors">
+        {errors.map((error, i) => (
+          <div className="reviewErrors">
+            <div key={i} className="reviewError">
+              {error}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
       <div className="star-review-input">
         <input
           value={stars}

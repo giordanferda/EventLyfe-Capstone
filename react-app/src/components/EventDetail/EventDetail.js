@@ -5,6 +5,7 @@ import EditEventModal from "../EditEvent/EditEventModal";
 import CreateReview from "../Reviews/CreateReview/CreateReview";
 import ReviewModal from "../Reviews/CreateReview/ReviewModal";
 import ReviewCard from "../Reviews/ReviewCard/ReviewCard";
+import defaultImage from "../defaultImage.jpg";
 import "./EventDetail.css";
 //dummy commit
 function EventDetail() {
@@ -56,7 +57,7 @@ function EventDetail() {
         <img
           className="event-preview-image"
           src={event?.preview_image}
-          alt="event"
+          onError={(e) => (e.target.src = defaultImage)}
         />
       </div>
       <div className="event-info-wrapper">
@@ -64,7 +65,7 @@ function EventDetail() {
           <img
             className="event-img-two"
             src={event?.preview_image}
-            alt="event"
+            onError={(e) => (e.target.src = defaultImage)}
           />
           <div className="early-access-right-info">
             <div className="event-detail-name">{event?.name}</div>

@@ -1,4 +1,5 @@
 import "./EventCard.css";
+import defaultImage from "../defaultImage.jpg";
 
 // import defaultimg from "./defaultimg.png";
 
@@ -14,8 +15,7 @@ function EventCard({ redirectToShow, event }) {
           <img
             className="event-card-image"
             src={event.preview_image}
-            alt="event"
-            // onError={(e) => (e.target.src = defaultimg)}
+            onError={(e) => (e.target.src = defaultImage)}
           />
         </div>
       </div>
