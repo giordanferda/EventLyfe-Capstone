@@ -13,7 +13,8 @@
 .editButton {
   border-radius: 5px;
   margin-top: 10px;
-  margin-left: 180px;
+  margin-left: 25%;
+  margin-bottom: 10px;
 }
 
 .margin-edit {

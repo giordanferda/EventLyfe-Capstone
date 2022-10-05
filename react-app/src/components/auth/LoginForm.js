@@ -36,7 +36,7 @@ const LoginForm = () => {
     <div className="flex-container">
       <div className="flex-child green left-login">
         <form onSubmit={onLogin} className="loginForm">
-          <div className='create-event-errors'>
+          <div className="create-event-errors">
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
@@ -62,7 +62,7 @@ const LoginForm = () => {
             />
             <button type="submit">Log in</button>
             <span> or </span>
-            <Link to="/sign-up">Sign up Here</Link>
+            <Link to="/signup">Sign up Here</Link>
           </div>
           <button
             onClick={() => {

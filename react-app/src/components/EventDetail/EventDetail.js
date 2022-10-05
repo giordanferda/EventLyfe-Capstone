@@ -72,10 +72,10 @@ function EventDetail() {
           </div>
         </div>
         <div className="ticket-box">
-          <ul>
+          {/* <ul>
             <li>B1</li>
             <li>heart</li>
-          </ul>
+          </ul> */}
 
           <div className="ticketbox-buttons">
             {sessionUser &&
@@ -92,17 +92,30 @@ function EventDetail() {
                 Delete Event
               </button>
             )}
-            <button className="ticket-button">Tickets</button>
+            {/* <button className="ticket-button">Tickets</button> */}
           </div>
         </div>
         <div className="event-desc">
           <div className="bigger-desc">
-            <div className="event-detail-description">{event?.description}</div>
+            <div className="event-detail-description">
+              <h4>
+                <i class="fa-sharp fa-solid fa-circle-info"></i> About this
+                event
+              </h4>
+              {event?.description}
+            </div>
           </div>
           <div className="smaller-desc">
             <div className="event-detail-location">
+              <h5>
+                <i class="fa-solid fa-location-dot"></i> Location
+              </h5>
               {event?.address} {event?.city}, {event?.state}, {event?.zipcode}
             </div>
+            <h5>
+              {" "}
+              <i class="fa-regular fa-calendar-days"></i> Date & Time
+            </h5>
             <div className="event-detail-start-end-time">
               {event?.start_time} - {event?.end_time}
             </div>

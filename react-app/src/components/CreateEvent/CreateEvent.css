@@ -28,7 +28,7 @@
   flex-direction: row;
   width: 100%;
   gap: 10px;
-  flex: 1;
+  flex: 1px;
 }
 
 .event-first-container-description {
@@ -36,12 +36,12 @@
   flex-direction: column;
   justify-content: left;
   gap: 8px;
-  flex: 1;
+  flex: 1px;
 }
 
 .event-first-container-input {
   height: 50px;
-  padding: 2;
+  padding: 2px;
 }
 
 .event-location-row {

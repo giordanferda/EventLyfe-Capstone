@@ -7,6 +7,7 @@ import * as sessionActons from "../../store/session";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
+  const [backendErrors, setBackendErrors] = useState([]);
   const [username, setUsername] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -23,11 +24,9 @@ const SignUpForm = () => {
     setIsSubmitted(true);
     if (password === repeatPassword) {
       setErrors([]);
-      const data = await dispatch(
-        signUp(username, firstName, lastName, email, password)
-      );
-      if (data && data.errors) {
-        setErrors(data.errors);
+      const data = await dispatch(signUp(username, email, password));
+      if (data) {
+        setBackendErrors(data);
       }
     } else {
       return setErrors([
@@ -78,7 +77,7 @@ const SignUpForm = () => {
       <div className="flex-child green left-login">
         <form onSubmit={onSignUp}>
           <div className="create-event-errors">
-            {errors.map((error, ind) => (
+            {backendErrors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
           </div>
@@ -137,7 +136,9 @@ const SignUpForm = () => {
               required={true}
             ></input>
           </div>
-          <button type="submit">Sign Up</button>
+          <button disabled={backendErrors.length > 0} type="submit">
+            Sign Up
+          </button>
         </form>
       </div>
       <div className="flex-child blue">
