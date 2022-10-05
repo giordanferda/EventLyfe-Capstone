@@ -43,13 +43,15 @@ const EditReview = ({ closeModal, rev }) => {
   return (
     <form className="review-form" onSubmit={handleSubmit}>
       <div className="review-Edit-Title">Edit Your Review</div>
-      {errors.map((error, i) => (
-        <div className="reviewErrors">
-          <div key={i} className="reviewError">
-            {error}
+      <div className="create-event-errors">
+        {errors.map((error, i) => (
+          <div className="reviewErrors">
+            <div key={i} className="reviewError">
+              {error}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
       <div className="star-review-input">
         <input
           value={stars}

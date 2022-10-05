@@ -77,7 +77,7 @@ const SignUpForm = () => {
     <div className="flex-container">
       <div className="flex-child green left-login">
         <form onSubmit={onSignUp}>
-          <div>
+          <div className="create-event-errors">
             {errors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
@@ -141,7 +141,7 @@ const SignUpForm = () => {
         </form>
       </div>
       <div className="flex-child blue">
-        <img className="loginImg" src={signupImg} alt="not fount" />
+        <img className="loginImg" src={signupImg} alt="not found" />
       </div>
     </div>
   );

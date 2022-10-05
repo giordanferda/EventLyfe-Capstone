@@ -122,14 +122,16 @@ function EditEventForm({ closeModal }) {
   return (
     <form onSubmit={handleSubmit}>
       <div className="EditEventTitle">Edit Your Event</div>
-      {errors.length > 0 &&
-        errors.map((error, i) => (
-          <div className="eventErrors">
-            <div key={i} className="eventError">
-              {error.split(": ")[1]}
+      <div className="create-event-errors">
+        {errors.length > 0 &&
+          errors.map((error, i) => (
+            <div className="eventErrors">
+              <div key={i} className="eventError">
+                {error.split(": ")[1]}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+      </div>
       <div>
         <label>Name</label>
         <input
