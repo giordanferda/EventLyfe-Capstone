@@ -14,7 +14,7 @@ import CreateEvent from "./components/CreateEvent/CreateEvent";
 import "./index.css";
 import ManageEvents from "./components/ManageEvents/ManageEvents";
 import * as reviewActions from "./store/review";
-
+import Footer from "./components/FooterAbout/Footer";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -61,6 +61,7 @@ function App() {
             <ManageEvents />
           </ProtectedRoute>
         </Switch>
+        <Footer loaded={loaded} />
       </div>
     </BrowserRouter>
   );
