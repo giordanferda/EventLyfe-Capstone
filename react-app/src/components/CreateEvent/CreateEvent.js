@@ -14,7 +14,7 @@ function CreateEvent() {
   const [address, setAddress] = useState("");
   const [ticket_quantity, setTicketQuantity] = useState(300);
   const [state, setState] = useState("Alabama");
-  const [city, setCity] = useState("East Rancho Dominguez");
+  const [city, setCity] = useState("Prattville");
   const [zipcode, setZipcode] = useState("");
   const [event_starts, setEventStarts] = useState("");
   const [event_ends, setEventEnds] = useState("");

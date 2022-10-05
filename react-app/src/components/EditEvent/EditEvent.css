@@ -1,0 +1,26 @@
+.edit-content-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.EditEventTitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editButton {
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 180px;
+}
+
+.margin-edit {
+  margin-left: 5px;
+}
+
+.eventError {
+  display: flex;
+  justify-content: center;
+}
