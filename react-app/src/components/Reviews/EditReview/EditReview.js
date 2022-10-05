@@ -42,7 +42,14 @@ const EditReview = ({ closeModal, rev }) => {
   };
   return (
     <form className="review-form" onSubmit={handleSubmit}>
-      <div className="review-Edit-Title">Edit Your Review</div>
+      <h3 className="review-Title">
+        <i class="fa-solid fa-magnifying-glass"></i> Edit Your Review
+      </h3>
+      <p className="review-sentence">
+        <i class="fa-thin fa-message-dots"></i>
+        Let people know about the Venue/Location/Experience and how the Event
+        went.
+      </p>
       <div className="create-event-errors">
         {errors.map((error, i) => (
           <div className="reviewErrors">
@@ -53,17 +60,23 @@ const EditReview = ({ closeModal, rev }) => {
         ))}
       </div>
       <div className="star-review-input">
+        <label className="star-label">
+          <i class="fa-regular fa-star"></i> Stars
+        </label>
         <input
           value={stars}
+          className="event-first-container-input"
           onChange={(e) => setStars(e.target.value)}
           placeholder="Stars"
           type="number"
           min="1"
           max="5"
         />
-
+        <label className="review-label">
+          <i class="fa-regular fa-comments"></i> Review
+        </label>
         <input
-          className="make-bigger"
+          className="make-bigger event-first-container-input"
           placeholder="Write a review"
           value={review}
           onChange={(e) => {
@@ -72,7 +85,7 @@ const EditReview = ({ closeModal, rev }) => {
           required
         />
       </div>
-      <button className="submitButton-review" type="submit">
+      <button className="submitButton-review edit-review-button" type="submit">
         Submit Review
       </button>
     </form>

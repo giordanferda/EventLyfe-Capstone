@@ -51,7 +51,7 @@
 .ticket-box {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   padding: 10px;
   border-top: 0.5px solid #dbdae3;
   border-bottom: 0.5px solid #dbdae3;

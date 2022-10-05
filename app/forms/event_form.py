@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField, TimeField
+from wtforms import StringField, IntegerField, SubmitField, TimeField, DateField
 from wtforms.validators import DataRequired, ValidationError
 
 def validate_name(form, field):

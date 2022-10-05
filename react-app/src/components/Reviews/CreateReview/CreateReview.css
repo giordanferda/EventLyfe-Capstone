@@ -1,0 +1,53 @@
+#modal-content > .review-form {
+  position: relative;
+  background-color: white;
+  padding: 20px;
+
+  width: 85%;
+  z-index: 999;
+}
+
+.review-form {
+  border-radius: 15px;
+  /* height: 400px; */
+  /* width: 300px; */
+}
+
+.review-Title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.review-sentence {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.star-review-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* align-items: center; */
+}
+
+.submitButton-review {
+  margin-top: 10px;
+  margin-left: 35%;
+}
+
+.star-label {
+  margin-top: 10px;
+}
+
+.review-one-per-event {
+  margin-top: 10px;
+}
+
+.review-sentence {
+  margin-bottom: 10px;
+}
+.review-label {
+  margin-top: 10px;
+}

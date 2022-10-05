@@ -53,9 +53,16 @@ const CreateReview = ({ event, closeModal }) => {
   // }, [review]);
   return (
     <form className="review-form" onSubmit={handleSubmit}>
-      <div className="review-Title">Write Your Review</div>
+      <h3 className="review-Title">
+        <i class="fa-solid fa-magnifying-glass"></i> Write Your Review
+      </h3>
+      <p className="review-sentence">
+        <i class="fa-thin fa-message-dots"></i>
+        Let people know about the Venue/Location/Experience and how the Event
+        went.
+      </p>
       <div className="review-one-per-event">
-        You are only able to create 1 review per Event.
+        Note: You are only able to create 1 review per Event.
       </div>
       {/* {errors.length > 0 && */}
       <div className="create-event-errors">
@@ -68,7 +75,11 @@ const CreateReview = ({ event, closeModal }) => {
         ))}
       </div>
       <div className="star-review-input">
+        <label className="star-label">
+          <i class="fa-regular fa-star"></i> Stars
+        </label>
         <input
+          className="event-first-container-input"
           value={stars}
           onChange={(e) => setStars(e.target.value)}
           placeholder="Stars"
@@ -76,9 +87,12 @@ const CreateReview = ({ event, closeModal }) => {
           min="1"
           max="5"
         />
-
+        <label className="review-label">
+          <i class="fa-regular fa-comments"></i> Review
+        </label>
         <input
           value={review}
+          className="event-first-container-input"
           onChange={(e) => setReview(e.target.value)}
           placeholder="Review"
           type="text"

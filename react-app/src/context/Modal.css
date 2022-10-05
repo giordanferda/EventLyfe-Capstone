@@ -23,8 +23,11 @@
 #modal-content {
   position: absolute;
   background-color: white;
-  height: 100%;
-  width: 40%;
+  display: flex;
+  justify-content: center;
+
+  /* max-height: 50%; */
+  width: 30%;
   z-index: 999;
   border-radius: 15px;
   animation-duration: 400ms;
