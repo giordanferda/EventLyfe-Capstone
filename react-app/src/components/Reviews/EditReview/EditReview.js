@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 import "./EditReview.css";
 import * as reviewActions from "../../../store/review";
-
+import { errorStyle } from "../../../util/styleUtil";
 const EditReview = ({ closeModal, rev }) => {
   //   const id = rev?.event_id;
   const dispatch = useDispatch();
@@ -66,6 +66,7 @@ const EditReview = ({ closeModal, rev }) => {
         <input
           value={stars}
           className="event-first-container-input"
+          style={errorStyle(errors, "stars")}
           onChange={(e) => setStars(e.target.value)}
           placeholder="Stars"
           type="number"
@@ -79,6 +80,7 @@ const EditReview = ({ closeModal, rev }) => {
           className="make-bigger event-first-container-input"
           placeholder="Write a review"
           value={review}
+          style={errorStyle(errors, "review")}
           onChange={(e) => {
             setReview(e.target.value);
           }}

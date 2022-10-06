@@ -3,6 +3,7 @@ import { cityAndStates } from "../states";
 import { updateEvent, getEventById } from "../../store/event";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
+import { errorStyle } from "../../util/styleUtil";
 import "./EditEvent.css";
 function EditEventForm({ closeModal }) {
   const { eventId } = useParams();
@@ -146,6 +147,7 @@ function EditEventForm({ closeModal }) {
               value={name}
               required
               type="text"
+              style={errorStyle(errors, "name")}
               onChange={(e) => setName(e.target.value)}
             ></input>
           </div>
@@ -157,6 +159,7 @@ function EditEventForm({ closeModal }) {
               required
               value={description}
               type="text"
+              style={errorStyle(errors, "description")}
               onChange={(e) => setDescription(e.target.value)}
             ></input>
             <div className="create-event-image">
@@ -168,6 +171,7 @@ function EditEventForm({ closeModal }) {
                 value={previewUrl}
                 className="previewUrl"
                 placeholder="Preview Image URL"
+                style={errorStyle(errors, "preview_url")}
                 onChange={(e) => setPreviewUrl(e.target.value)}
                 required
               />
@@ -185,6 +189,7 @@ function EditEventForm({ closeModal }) {
               required
               value={address}
               type="text"
+              style={errorStyle(errors, "address")}
               onChange={(e) => setAddress(e.target.value)}
             ></input>
           </div>
@@ -203,6 +208,7 @@ function EditEventForm({ closeModal }) {
             <label>State</label>
             <select
               value={state}
+              style={errorStyle(errors, "state")}
               onChange={(e) => {
                 setState(e.target.value);
               }}
@@ -218,6 +224,7 @@ function EditEventForm({ closeModal }) {
             <div className="event-first-container-description">
               <label>City</label>
               <select
+                style={errorStyle(errors, "city")}
                 onChange={(e) => {
                   const city = e.target.value;
                   setCity(city);
@@ -239,6 +246,7 @@ function EditEventForm({ closeModal }) {
                 required
                 value={zipcode}
                 type="number"
+                style={errorStyle(errors, "zipcode")}
                 onChange={(e) => setZipcode(e.target.value)}
               ></input>
             </div>
@@ -254,6 +262,7 @@ function EditEventForm({ closeModal }) {
                 required
                 value={event_starts}
                 type="date"
+                style={errorStyle(errors, "event_starts")}
                 onChange={(e) => setEventStarts(e.target.value)}
               ></input>
             </div>
@@ -266,6 +275,7 @@ function EditEventForm({ closeModal }) {
               required
               value={event_ends}
               type="date"
+              style={errorStyle(errors, "event_ends")}
               onChange={(e) => setEventEnds(e.target.value)}
             ></input>
           </div>
@@ -280,6 +290,7 @@ function EditEventForm({ closeModal }) {
               required
               value={start_time}
               type="time"
+              style={errorStyle(errors, "start_time")}
               onChange={(e) => setStartTime(e.target.value)}
             ></input>
           </div>
@@ -292,6 +303,7 @@ function EditEventForm({ closeModal }) {
             required
             value={end_time}
             type="time"
+            style={errorStyle(errors, "end_time")}
             onChange={(e) => setEndTime(e.target.value)}
           ></input>
         </div>

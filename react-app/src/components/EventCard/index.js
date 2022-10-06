@@ -1,6 +1,6 @@
 import "./EventCard.css";
 import defaultImage from "../defaultImage.jpg";
-
+import { formatDate } from "../../util/datesUtil";
 // import defaultimg from "./defaultimg.png";
 
 function EventCard({ redirectToShow, event }) {
@@ -26,6 +26,10 @@ function EventCard({ redirectToShow, event }) {
       </div>
       <div className="event-location">
         {event.address} {event.city}, {event.state}, {event.zipcode}
+      </div>
+      <div className="date-event">
+        {formatDate(event.event_starts.split("-"))} -{" "}
+        {formatDate(event.event_ends.split("-"))}
       </div>
       <div className="start-end-time">
         {event.start_time} - {event.end_time}
