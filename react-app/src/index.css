@@ -19,3 +19,18 @@ body {
 * {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+input {
+  border: none;
+}
+
+input[type="text"],
+input[type="url"],
+input[type="number"],
+input[type="password"],
+input[type="email"],
+input[type="time"],
+input[type="date"],
+input[type="select"] {
+  padding-left: 15px;
+}

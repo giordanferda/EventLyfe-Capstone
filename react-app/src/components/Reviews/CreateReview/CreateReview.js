@@ -11,12 +11,8 @@ const CreateReview = ({ event, closeModal }) => {
   const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
 
-  //   console.log(reviewData);
-  // dummy commit for reseeding heroku
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // setErrors([]);
 
     const reviewData = {
       user_id: sessionUser.id,
@@ -24,33 +20,27 @@ const CreateReview = ({ event, closeModal }) => {
       review: review,
       event_id: id,
     };
+    // const data = await dispatch(reviewActions.createReview(reviewData));
+    // if (data && data.errors) {
+    //   setErrors(data.errors);
+    // } else {
+    // }
+    dispatch(reviewActions.createReview(reviewData));
+    setReview("");
+    setStars("");
+    closeModal();
+  };
 
-    let errors = [];
+  useEffect(() => {
+    const errors = [];
     if (review.length <= 3) {
       errors.push("Review must be at least 4 characters long");
     }
-    setErrors(errors);
-    // console.log(errors, "this is errors in create review");
-    if (review.length > 3) {
-      // const data = await dispatch(reviewActions.createReview(reviewData));
-      // if (data && data.errors) {
-      //   setErrors(data.errors);
-      // } else {
-      // }
-      dispatch(reviewActions.createReview(reviewData));
-      setReview("");
-      setStars("");
-      closeModal();
+    if (review.length > 255) {
+      errors.push("Review must be less than 255 characters");
     }
-  };
-
-  // useEffect(() => {
-  // const errors = [];
-  // if (review.length < 3) {
-  //   errors.push("Review must be at least 3 characters long");
-  // }
-  // setErrors(errors);
-  // }, [review]);
+    setErrors(errors);
+  }, [review]);
   return (
     <form className="review-form" onSubmit={handleSubmit}>
       <h3 className="review-Title">
@@ -102,7 +92,7 @@ const CreateReview = ({ event, closeModal }) => {
       <button
         className="submitButton-review"
         type="submit"
-        // disabled={review.length <= 3}
+        disabled={errors.length > 0}
       >
         Submit Review
       </button>

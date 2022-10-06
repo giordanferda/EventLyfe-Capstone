@@ -1,6 +1,7 @@
 .splash-container {
   align-items: center;
   position: relative;
+  min-height: calc(100vh - 90px - 48px);
 }
 
 .splash-content {
@@ -16,8 +17,8 @@
 
 .viewallevents {
   position: absolute;
-  left: 32px;
-  bottom: 70px;
+  left: 55px;
+  bottom: 160px;
   color: white;
 }
 .view-all-button {
