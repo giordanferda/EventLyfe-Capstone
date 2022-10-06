@@ -22,6 +22,7 @@ body {
 
 input {
   border: none;
+  outline: 1px solid black;
 }
 
 input[type="text"],

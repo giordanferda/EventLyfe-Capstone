@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Redirect } from "react-router-dom";
 import { deleteEventById } from "../../store/event";
+import { formatDate } from "../../util/datesUtil";
 import EditEventModal from "../EditEvent/EditEventModal";
 import CreateReview from "../Reviews/CreateReview/CreateReview";
 import ReviewModal from "../Reviews/CreateReview/ReviewModal";
@@ -16,12 +17,12 @@ function EventDetail() {
   const history = useHistory();
   const event = useSelector((state) => state.event[eventId]);
   const reviews = useSelector((state) => state.reviews);
-  // const user = useSelector((state) => state.session.user);
+  const user = useSelector((state) => state.session.user);
 
   async function handleDelete(e) {
     e.preventDefault();
     await dispatch(deleteEventById(eventId));
-    history.push("/events");
+    // history.push("/events");
   }
 
   const alreadyReviewed = () => {
@@ -50,6 +51,9 @@ function EventDetail() {
       currentUser = true;
     } else currentUser = false;
   }
+  if (!event) {
+    return <Redirect to="/events" />;
+  }
 
   return (
     <div className="event-detail-container">
@@ -68,7 +72,10 @@ function EventDetail() {
             onError={(e) => (e.target.src = defaultImage)}
           />
           <div className="early-access-right-info">
-            <div className="event-detail-name">{event?.name}</div>
+            <h2 className="event-detail-name">{event?.name}</h2>
+            <h4 className="hosted-by">
+              Hosted By: {user?.firstname} {user?.lastname}
+            </h4>
           </div>
         </div>
         <div className="ticket-box">
@@ -117,7 +124,13 @@ function EventDetail() {
               <i class="fa-regular fa-calendar-days"></i> Date & Time
             </h5>
             <div className="event-detail-start-end-time">
-              {event?.start_time} - {event?.end_time}
+              <div className="date-event">
+                {formatDate(event.event_starts.split("-"))} -{" "}
+                {formatDate(event.event_ends.split("-"))}
+              </div>
+              <div>
+                {event?.start_time} - {event?.end_time}
+              </div>
             </div>
           </div>
         </div>

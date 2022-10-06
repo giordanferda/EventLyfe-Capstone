@@ -4,6 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import { login } from "../../store/session";
 import "./LoginForm.css";
 import loginImg from "../login-signup.png";
+import { errorStyle } from "../../util/styleUtil";
 
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);

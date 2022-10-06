@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { cityAndStates } from "../states";
 import { createEvent } from "../../store/event";
-import { compareDates } from "../../util/datesUtil";
+import { startsBefore, getCurrentDate } from "../../util/datesUtil";
 import { errorStyle } from "../../util/styleUtil";
 import "./CreateEvent.css";
 
@@ -18,8 +18,8 @@ function CreateEvent() {
   const [state, setState] = useState("Alabama");
   const [city, setCity] = useState("Prattville");
   const [zipcode, setZipcode] = useState("");
-  const [event_starts, setEventStarts] = useState("");
-  const [event_ends, setEventEnds] = useState("");
+  const [event_starts, setEventStarts] = useState(getCurrentDate());
+  const [event_ends, setEventEnds] = useState(getCurrentDate());
   const [start_time, setStartTime] = useState("");
   const [end_time, setEndTime] = useState("");
   const [previewUrl, setPreviewUrl] = useState("");
@@ -98,6 +98,9 @@ function CreateEvent() {
     if (event_ends.length < 1) {
       errors.push("event_ends: Event end date must be filled out");
     }
+    if (startsBefore(event_starts, getCurrentDate()) === false) {
+      errors.push("event_starts: Event start date must be in the future");
+    }
     if (start_time.length < 1) {
       errors.push("start_time: Event start time must be filled out");
     }
@@ -107,7 +110,7 @@ function CreateEvent() {
     if (end_time <= start_time) {
       errors.push("end_time: Event end time must be after start time");
     }
-    if (compareDates(event_starts, event_ends) === false) {
+    if (startsBefore(event_starts, event_ends) === false) {
       errors.push(
         "event_ends: Event end date must be after or on event start date"
       );
