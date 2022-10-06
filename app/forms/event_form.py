@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, SubmitField, TimeField, DateTimeField
+from wtforms import StringField, IntegerField, SubmitField, TimeField
 from wtforms.validators import DataRequired, ValidationError
 
 def validate_name(form, field):
@@ -36,8 +36,8 @@ class EventForm(FlaskForm):
   state = StringField('state', validators=[DataRequired()])
   city = StringField('city', validators=[DataRequired(), validate_city])
   zipcode = IntegerField('zipcode', validators=[DataRequired()])
-  # event_starts = DateTimeField('event_starts', validators=[DataRequired()], format='%Y-%m-%d')
-  # event_ends = DateTimeField('event_ends', validators=[DataRequired()], format='%Y-%m-%d')
+  event_starts = StringField('event_starts', validators=[DataRequired()])
+  event_ends = StringField('event_ends', validators=[DataRequired()])
   start_time = TimeField('start_time', validators=[DataRequired(), validate_time])
   end_time = TimeField('end_time', validators=[DataRequired(), validate_time])
   preview_image = StringField('preview_image', validators=[DataRequired()])

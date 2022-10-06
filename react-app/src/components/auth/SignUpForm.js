@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { signUp } from "../../store/session";
 import signupImg from "../login-signup.png";
+import { capitalizeWord } from "../../util/stringUtil";
+import "./SignUpForm.css";
 import * as sessionActons from "../../store/session";
 
 const SignUpForm = () => {
@@ -21,10 +23,21 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
+    // e.stopPropagation();
     setIsSubmitted(true);
+    const capitalizedFirstName = capitalizeWord(firstName);
+    const capitalizedLastName = capitalizeWord(lastName);
     if (password === repeatPassword) {
-      setErrors([]);
-      const data = await dispatch(signUp(username, email, password));
+      setBackendErrors([]);
+      const data = await dispatch(
+        signUp({
+          username,
+          firstName: capitalizedFirstName,
+          lastName: capitalizedLastName,
+          email,
+          password,
+        })
+      );
       if (data) {
         setBackendErrors(data);
       }
@@ -44,6 +57,27 @@ const SignUpForm = () => {
     }
     setErrors(errors);
   }, [password, repeatPassword]);
+
+  useEffect(() => {
+    const postErrors = {};
+    if (username.length > 20)
+      postErrors.username = "Username must be less than 20 characters";
+    if (!username) postErrors.username = "Please enter a user name";
+    if (!email.includes("@") || !email.includes("."))
+      postErrors.email = "Invalid Email";
+    if (!email) postErrors.email = "Please enter an email";
+    if (password.length < 6)
+      postErrors.password = "Password must be at least 6 characters";
+    if (password.length > 255)
+      postErrors.password = "Password must be less than 255 characters";
+    if (!password) postErrors.password = "Please enter a password";
+    if (!repeatPassword)
+      postErrors.repeatPassword = "Please repeat your password";
+    if (password !== repeatPassword)
+      postErrors.repeatPassword = "Passwords must match";
+
+    setErrors(postErrors);
+  }, [username, email, password, repeatPassword]);
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -88,7 +122,9 @@ const SignUpForm = () => {
               name="username"
               onChange={updateUsername}
               value={username}
+              required
             ></input>
+            <div className="signup-error-message">{errors?.username}</div>
           </div>
           <div>
             <label>First Name</label>
@@ -97,6 +133,7 @@ const SignUpForm = () => {
               name="firstName"
               onChange={updateFirstName}
               value={firstName}
+              required
             ></input>
           </div>
           <div>
@@ -106,6 +143,7 @@ const SignUpForm = () => {
               name="lastName"
               onChange={updateLastName}
               value={lastName}
+              required
             ></input>
           </div>
           <div>
@@ -115,7 +153,9 @@ const SignUpForm = () => {
               name="email"
               onChange={updateEmail}
               value={email}
+              required
             ></input>
+            <div className="signup-error-message">{errors?.email}</div>
           </div>
           <div>
             <label>Password</label>
@@ -124,7 +164,9 @@ const SignUpForm = () => {
               name="password"
               onChange={updatePassword}
               value={password}
+              required
             ></input>
+            <div className="signup-error-message">{errors?.password}</div>
           </div>
           <div>
             <label>Repeat Password</label>
@@ -135,8 +177,16 @@ const SignUpForm = () => {
               value={repeatPassword}
               required={true}
             ></input>
+            <div className="signup-error-message">{errors?.repeatPassword}</div>
           </div>
-          <button disabled={backendErrors.length > 0} type="submit">
+          <button
+            disabled={
+              errors.length > 0
+              // ? (style = { cursor: "not-allowed" })
+              // : (style = { cursor: "pointer" })
+            }
+            type="submit"
+          >
             Sign Up
           </button>
         </form>

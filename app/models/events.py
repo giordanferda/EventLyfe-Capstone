@@ -12,8 +12,8 @@ class Event(db.Model):
   state = db.Column(db.String, nullable=False)
   city = db.Column(db.String, nullable=False)
   zipcode = db.Column(db.Integer, nullable=False)
-  # event_starts = db.Column(db.Date, nullable=False)
-  # event_ends = db.Column(db.Date, nullable=False)
+  event_starts = db.Column(db.String, nullable=False)
+  event_ends = db.Column(db.String, nullable=False)
   start_time = db.Column(db.Time, nullable=False)
   end_time = db.Column(db.Time, nullable=False)
   preview_image = db.Column(db.String, nullable=False)
@@ -36,8 +36,8 @@ class Event(db.Model):
       "state": self.state,
       "city": self.city,
       "zipcode": self.zipcode,
-      # "event_starts": self.event_starts,
-      # "event_ends": self.event_ends,
+      "event_starts": self.event_starts,
+      "event_ends": self.event_ends,
       "start_time": self.start_time.isoformat(timespec='minutes'),
       "end_time": self.end_time.isoformat(timespec='minutes'),
       "preview_image": self.preview_image,

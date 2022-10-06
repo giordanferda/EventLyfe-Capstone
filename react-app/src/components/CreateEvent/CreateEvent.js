@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { cityAndStates } from "../states";
 import { createEvent } from "../../store/event";
+import { compareDates } from "../../util/datesUtil";
+import { errorStyle } from "../../util/styleUtil";
 import "./CreateEvent.css";
 
 function CreateEvent() {
@@ -50,17 +52,16 @@ function CreateEvent() {
       history.push(`/events/${newEvent.id}`);
     }
   };
-
   useEffect(() => {
     const imageUrlValid = /\.(jpeg|jpg|png)$/;
-    const zipCodeValid = /^\d{5}$/;
+    // const zipCodeValid = /^\d{5}$/;
     const errors = [];
+
     if (!previewUrl.match(imageUrlValid)) {
       errors.push(
         "preview_url: Preview url must end in valid img extension [png/jpg/jpeg]"
       );
     }
-
     if (name.length > 40) {
       errors.push("name: Name must be less than 40 characters");
     }
@@ -85,18 +86,46 @@ function CreateEvent() {
     if (ticket_quantity > 2500) {
       errors.push("ticket_quantity: Ticket quantity must be less than 2500");
     }
-    if (!zipcode || !JSON.stringify(zipcode).match(zipCodeValid)) {
+    if (zipcode.length !== 5) {
       errors.push("zipcode: Zipcode must be 5 digits");
+    }
+    if (zipcode.match(/^[a-zA-Z0-9!@#$%^&()_+-=[]{};':"\|,.<>/)) {
+      errors.push("zipcode: Zipcode must be a number");
+    }
+    if (event_starts.length < 1) {
+      errors.push("event_starts: Event start date must be filled out");
+    }
+    if (event_ends.length < 1) {
+      errors.push("event_ends: Event end date must be filled out");
+    }
+    if (start_time.length < 1) {
+      errors.push("start_time: Event start time must be filled out");
+    }
+    if (end_time.length < 1) {
+      errors.push("end_time: Event end time must be filled out");
+    }
+    if (end_time <= start_time) {
+      errors.push("end_time: Event end time must be after start time");
+    }
+    if (compareDates(event_starts, event_ends) === false) {
+      errors.push(
+        "event_ends: Event end date must be after or on event start date"
+      );
     }
     if (cityAndStates[city] !== state) {
       errors.push("city: City must be in the selected state");
     }
+
     setErrors(errors);
   }, [
     previewUrl,
     name,
     description,
     address,
+    event_starts,
+    event_ends,
+    start_time,
+    end_time,
     zipcode,
     ticket_quantity,
     state,
@@ -146,6 +175,7 @@ function CreateEvent() {
               value={name}
               required
               type="text"
+              style={errorStyle(errors, "name")}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -158,6 +188,7 @@ function CreateEvent() {
               required
               value={description}
               type="text"
+              style={errorStyle(errors, "description")}
               onChange={(e) => setDescription(e.target.value)}
             />
             <div className="create-event-image">
@@ -169,6 +200,7 @@ function CreateEvent() {
                 value={previewUrl}
                 className="event-first-container-input"
                 placeholder="Preview Image URL"
+                style={errorStyle(errors, "preview_url")}
                 onChange={(e) => setPreviewUrl(e.target.value)}
                 required
               />
@@ -192,6 +224,7 @@ function CreateEvent() {
               required
               value={address}
               type="text"
+              style={errorStyle(errors, "address")}
               onChange={(e) => setAddress(e.target.value)}
             />
           </div>
@@ -209,6 +242,7 @@ function CreateEvent() {
             <label> State</label>
             <select
               value={state}
+              style={errorStyle(errors, "state")}
               onChange={(e) => {
                 setState(e.target.value);
               }}
@@ -225,6 +259,7 @@ function CreateEvent() {
             <div className="event-first-container-description">
               <label> City </label>
               <select
+                style={errorStyle(errors, "city")}
                 onChange={(e) => {
                   setCity(e.target.value);
                 }}
@@ -246,6 +281,7 @@ function CreateEvent() {
                 required
                 value={zipcode}
                 type="number"
+                style={errorStyle(errors, "zipcode")}
                 onChange={(e) => setZipcode(e.target.value)}
               />
             </div>
@@ -258,9 +294,10 @@ function CreateEvent() {
               <input
                 className="event-first-container-input"
                 placeholder="Event Starts"
-                required
+                required={true}
                 value={event_starts}
                 type="date"
+                style={errorStyle(errors, "event_starts")}
                 onChange={(e) => setEventStarts(e.target.value)}
               />
             </div>
@@ -269,9 +306,10 @@ function CreateEvent() {
               <input
                 className="event-first-container-input"
                 placeholder="Event Ends"
-                required
+                required={true}
                 value={event_ends}
                 type="date"
+                style={errorStyle(errors, "event_ends")}
                 onChange={(e) => setEventEnds(e.target.value)}
               />
             </div>
@@ -285,6 +323,7 @@ function CreateEvent() {
                 required
                 value={start_time}
                 type="time"
+                style={errorStyle(errors, "start_time")}
                 onChange={(e) => setStartTime(e.target.value)}
               />
             </div>
@@ -296,12 +335,15 @@ function CreateEvent() {
                 required
                 value={end_time}
                 type="time"
+                style={errorStyle(errors, "end_time")}
                 onChange={(e) => setEndTime(e.target.value)}
               />
             </div>
           </div>
         </div>
-        <button className="submitEvent">Create Event</button>
+        <button disabled={errors.length > 0} className="submitEvent">
+          Create Event
+        </button>
       </form>
     </div>
   );

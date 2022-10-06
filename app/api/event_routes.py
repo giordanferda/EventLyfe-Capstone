@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, request
 from app.models import db, Event
+from datetime import datetime
 from ..forms.event_form import EventForm
 from datetime import time
 from flask_login import login_required, current_user
@@ -35,8 +36,8 @@ def create_event():
             state=form.state.data,
             city=form.city.data,
             zipcode=form.zipcode.data,
-            # event_starts=form.event_starts.data,
-            # event_ends=form.event_ends.data,
+            event_starts=form.event_starts.data,
+            event_ends=form.event_ends.data,
             start_time=form.start_time.data,
             end_time=form.end_time.data,
             preview_image=form.preview_image.data
@@ -64,8 +65,8 @@ def edit_event(event_id):
             event.state = form.state.data
             event.city = form.city.data
             event.zipcode = form.zipcode.data
-            # event.event_starts = form.event_starts.data
-            # event.event_ends = form.event_ends.data
+            event.event_starts = form.event_starts.data
+            event.event_ends = form.event_ends.data
             event.start_time = form.start_time.data
             event.end_time = form.end_time.data
             event.preview_image = form.preview_image.data
