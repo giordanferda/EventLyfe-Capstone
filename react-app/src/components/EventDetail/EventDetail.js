@@ -73,9 +73,9 @@ function EventDetail() {
           />
           <div className="early-access-right-info">
             <h2 className="event-detail-name">{event?.name}</h2>
-            <h4 className="hosted-by">
+            {/* <h4 className="hosted-by">
               Hosted By: {user?.firstname} {user?.lastname}
-            </h4>
+            </h4> */}
           </div>
         </div>
         <div className="ticket-box">
