@@ -8,7 +8,7 @@ import ReviewModal from "../Reviews/CreateReview/ReviewModal";
 import ReviewCard from "../Reviews/ReviewCard/ReviewCard";
 import defaultImage from "../defaultImage.jpg";
 import "./EventDetail.css";
-//dummy commit
+//dummy commit pt 2 reseeding
 function EventDetail() {
   const { eventId } = useParams();
   let currentUser;
