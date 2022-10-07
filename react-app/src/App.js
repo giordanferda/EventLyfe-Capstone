@@ -15,6 +15,7 @@ import "./index.css";
 import ManageEvents from "./components/ManageEvents/ManageEvents";
 import * as reviewActions from "./store/review";
 import Footer from "./components/FooterAbout/Footer";
+import BrokenLink from "./components/404Page.js/404Page";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -60,6 +61,9 @@ function App() {
           <ProtectedRoute path="/manageEvents" exact={true}>
             <ManageEvents />
           </ProtectedRoute>
+          <Route>
+            <BrokenLink />
+          </Route>
         </Switch>
         <Footer loaded={loaded} />
       </div>

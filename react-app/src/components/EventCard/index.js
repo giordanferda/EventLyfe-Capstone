@@ -1,6 +1,6 @@
 import "./EventCard.css";
 import defaultImage from "../defaultImage.jpg";
-import { formatDate } from "../../util/datesUtil";
+import { formatDate, convertMilitaryTime } from "../../util/datesUtil";
 // import defaultimg from "./defaultimg.png";
 
 function EventCard({ redirectToShow, event }) {
@@ -32,7 +32,8 @@ function EventCard({ redirectToShow, event }) {
         {formatDate(event.event_ends.split("-"))}
       </div>
       <div className="start-end-time">
-        {event.start_time} - {event.end_time}
+        {convertMilitaryTime(event.start_time)} -{" "}
+        {convertMilitaryTime(event.end_time)}
       </div>
       <div className="card-description">{event.description}</div>
       <div className="card-review-data">

@@ -1,12 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory, Redirect } from "react-router-dom";
 import { deleteEventById } from "../../store/event";
-import { formatDate } from "../../util/datesUtil";
+import { formatDate, convertMilitaryTime } from "../../util/datesUtil";
 import EditEventModal from "../EditEvent/EditEventModal";
 import CreateReview from "../Reviews/CreateReview/CreateReview";
 import ReviewModal from "../Reviews/CreateReview/ReviewModal";
 import ReviewCard from "../Reviews/ReviewCard/ReviewCard";
 import defaultImage from "../defaultImage.jpg";
+
 import "./EventDetail.css";
 //dummy commit pt 2 reseeding
 function EventDetail() {
@@ -129,7 +130,8 @@ function EventDetail() {
                 {formatDate(event.event_ends.split("-"))}
               </div>
               <div>
-                {event?.start_time} - {event?.end_time}
+                {convertMilitaryTime(event?.start_time)} -{" "}
+                {convertMilitaryTime(event?.end_time)}
               </div>
             </div>
           </div>

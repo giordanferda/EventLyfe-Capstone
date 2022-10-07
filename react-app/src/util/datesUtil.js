@@ -51,17 +51,15 @@ const DAYS = {
 // 2023-06-21 END DATE
 
 export function startsBefore(start, end) {
-  if (start === end) {
-    return true;
-  }
-  start = start.split("-").map((el) => parseInt(el));
-  end = end.split("-").map((el) => parseInt(el));
-  for (let i = 0; i < 3; i++) {
-    if (start[i] > end[i]) {
-      return false;
-    }
-  }
-  return true;
+  start = new Date(start);
+  end = new Date(end);
+  return start.getTime() >= end.getTime();
+}
+
+export function isAfterOrOn(start, end) {
+  start = new Date(start);
+  end = new Date(end);
+  return start.getTime() <= end.getTime();
 }
 
 export function formatDate([year, month, day]) {
@@ -74,4 +72,11 @@ export function getCurrentDate() {
   const mm = (today.getMonth() + 1).toString().padStart(2, "0");
   const yyyy = today.getFullYear();
   return yyyy + "-" + mm + "-" + dd;
+}
+
+export function convertMilitaryTime(time) {
+  const [hours, minutes] = time.split(":");
+  const suffix = hours >= 12 ? "PM" : "AM";
+  const hour = hours % 12 || 12;
+  return `${hour}:${minutes} ${suffix}`;
 }

@@ -4,6 +4,11 @@ import { updateEvent, getEventById } from "../../store/event";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { errorStyle } from "../../util/styleUtil";
+import {
+  startsBefore,
+  getCurrentDate,
+  isAfterOrOn,
+} from "../../util/datesUtil";
 import "./EditEvent.css";
 function EditEventForm({ closeModal }) {
   const { eventId } = useParams();
@@ -58,14 +63,13 @@ function EditEventForm({ closeModal }) {
 
   useEffect(() => {
     const imageUrlValid = /\.(jpeg|jpg|png)$/;
-    const zipCodeValid = /^\d{5}$/;
     const errors = [];
+
     if (!previewUrl.match(imageUrlValid)) {
       errors.push(
         "preview_url: Preview url must end in valid img extension [png/jpg/jpeg]"
       );
     }
-
     if (name.length > 40) {
       errors.push("name: Name must be less than 40 characters");
     }
@@ -81,8 +85,8 @@ function EditEventForm({ closeModal }) {
     if (address.length > 75) {
       errors.push("address: Address must be less than 75 characters");
     }
-    if (address.length < 6) {
-      errors.push("address: Address must be more than 6 characters");
+    if (address.length < 5) {
+      errors.push("address: Address must be more than 5 characters");
     }
     if (ticket_quantity < 1) {
       errors.push("ticket_quantity: Ticket quantity must be more than 0");
@@ -90,18 +94,55 @@ function EditEventForm({ closeModal }) {
     if (ticket_quantity > 2500) {
       errors.push("ticket_quantity: Ticket quantity must be less than 2500");
     }
-    if (!zipcode || !JSON.stringify(zipcode).match(zipCodeValid)) {
+    if (JSON.stringify(zipcode).length !== 5) {
       errors.push("zipcode: Zipcode must be 5 digits");
+    }
+    if (
+      JSON.stringify(zipcode).match(/^[a-zA-Z0-9!@#$%^&()_+-=[]{};':"\|,.<>/)
+    ) {
+      errors.push("zipcode: Zipcode must be a number");
+    }
+    if (event_starts.length < 1) {
+      errors.push("event_starts: Event start date must be filled out");
+    }
+    if (event_ends.length < 1) {
+      errors.push("event_ends: Event end date must be filled out");
+    }
+    if (startsBefore(event_starts, getCurrentDate()) === false) {
+      errors.push("event_starts: Event start date must be in the future");
+    }
+    if (start_time.length < 1) {
+      errors.push("start_time: Event start time must be filled out");
+    }
+    if (end_time.length < 1) {
+      errors.push("end_time: Event end time must be filled out");
+    }
+    if (end_time <= start_time) {
+      const start = new Date(event_starts);
+      const end = new Date(event_ends);
+      if (start.getTime() === end.getTime()) {
+        errors.push("end_time: Event end time must be after start time");
+      }
+    }
+    if (isAfterOrOn(event_starts, event_ends) === false) {
+      errors.push(
+        "event_ends: Event end date must be after or on event start date"
+      );
     }
     if (cityAndStates[city] !== state) {
       errors.push("city: City must be in the selected state");
     }
+
     setErrors(errors);
   }, [
     previewUrl,
     name,
     description,
     address,
+    event_starts,
+    event_ends,
+    start_time,
+    end_time,
     zipcode,
     ticket_quantity,
     state,
@@ -154,7 +195,7 @@ function EditEventForm({ closeModal }) {
           <div className="event-first-container-description">
             <label>Description</label>
             <input
-              className="edit-event-description"
+              className="edit-event-input"
               placeholder="Description"
               required
               value={description}
@@ -169,7 +210,7 @@ function EditEventForm({ closeModal }) {
                 type="url"
                 name="previewUrl"
                 value={previewUrl}
-                className="previewUrl"
+                className="edit-event-input"
                 placeholder="Preview Image URL"
                 style={errorStyle(errors, "preview_url")}
                 onChange={(e) => setPreviewUrl(e.target.value)}
@@ -184,7 +225,7 @@ function EditEventForm({ closeModal }) {
             </h3>
             <label>Address</label>
             <input
-              className="edit-event-Address"
+              className="edit-event-input"
               placeholder="Address"
               required
               value={address}
@@ -204,7 +245,7 @@ function EditEventForm({ closeModal }) {
         onChange={(e) => setTicketQuantity(e.target.value)}
         ></input>
       </div> */}
-          <div className="event-first-container-description">
+          <div className="event-first-container-description edit-event-input">
             <label>State</label>
             <select
               value={state}
@@ -257,7 +298,7 @@ function EditEventForm({ closeModal }) {
             <div className="event-first-container-description">
               <label>Event Starts</label>
               <input
-                className="edit-event-start-date"
+                className="edit-event-input"
                 placeholder="Event Starts"
                 required
                 value={event_starts}
@@ -270,7 +311,7 @@ function EditEventForm({ closeModal }) {
           <div className="event-first-container-description">
             <label>Event Ends</label>
             <input
-              className="edit-event-end-date"
+              className="edit-event-input"
               placeholder="Event Ends"
               required
               value={event_ends}
@@ -285,7 +326,7 @@ function EditEventForm({ closeModal }) {
           <div className="event-first-container-description">
             <label>Start Time</label>
             <input
-              className="edit-event-start-time"
+              className="edit-event-input"
               placeholder="Start Time"
               required
               value={start_time}
@@ -298,7 +339,7 @@ function EditEventForm({ closeModal }) {
         <div className="event-first-container-description">
           <label>End Time</label>
           <input
-            className="edit-event-end-time"
+            className="edit-event-input"
             placeholder="End Time"
             required
             value={end_time}

@@ -7,6 +7,7 @@
 .splash-content {
   overflow: hidden;
   object-fit: cover;
+  height: 800px;
 }
 
 .splash-content > img {
@@ -28,4 +29,10 @@
 .view-all-button a {
   color: white;
   text-decoration: none;
+}
+
+.img-splash {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
