@@ -1,9 +1,7 @@
 #modal-content > .review-form {
   position: relative;
   background-color: white;
-  padding: 20px;
-
-  width: 85%;
+  /* width: 85%; */
   z-index: 999;
 }
 

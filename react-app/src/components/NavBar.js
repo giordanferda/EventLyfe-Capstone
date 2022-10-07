@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./NavBar.css";
 import ProfileButton from "./ProfileButton";
@@ -31,6 +31,11 @@ const NavBar = ({ loaded }) => {
             <NavLink to="/createEvent" exact={true} activeClassName="active">
               <button className="create-event-button">Create Event</button>
             </NavLink>
+            {/* <Link to="/createEvent">
+              <div className="link-to-create-event"></div>
+              <i class="fa-solid fa-plus"></i>
+              <button>Create Event</button> */}
+            {/* </Link> */}
           </div>
           {currentUser ? (
             <ProfileButton user={currentUser} />

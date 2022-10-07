@@ -1,0 +1,24 @@
+.four-container {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  background-color: #f5f7f8;
+}
+
+.img-four {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 75%;
+}
+
+.Not-found {
+  position: absolute;
+  display: flex;
+  margin-left: 34.5%;
+  color: red;
+  margin-top: 50px;
+}

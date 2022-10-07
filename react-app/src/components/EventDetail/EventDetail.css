@@ -84,10 +84,12 @@
 
 .bigger-desc {
   width: 65%;
+  overflow-wrap: break-word;
 }
 .smaller-desc {
   width: 35%;
   padding: 10px;
+  overflow-wrap: break-word;
 }
 
 .event-desc {

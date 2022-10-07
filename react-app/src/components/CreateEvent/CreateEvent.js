@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { cityAndStates } from "../states";
 import { createEvent } from "../../store/event";
-import { startsBefore, getCurrentDate } from "../../util/datesUtil";
+import {
+  startsBefore,
+  getCurrentDate,
+  isAfterOrOn,
+} from "../../util/datesUtil";
 import { errorStyle } from "../../util/styleUtil";
 import "./CreateEvent.css";
 
@@ -54,7 +58,6 @@ function CreateEvent() {
   };
   useEffect(() => {
     const imageUrlValid = /\.(jpeg|jpg|png)$/;
-    // const zipCodeValid = /^\d{5}$/;
     const errors = [];
 
     if (!previewUrl.match(imageUrlValid)) {
@@ -108,9 +111,13 @@ function CreateEvent() {
       errors.push("end_time: Event end time must be filled out");
     }
     if (end_time <= start_time) {
-      errors.push("end_time: Event end time must be after start time");
+      const start = new Date(event_starts);
+      const end = new Date(event_ends);
+      if (start.getTime() === end.getTime()) {
+        errors.push("end_time: Event end time must be after start time");
+      }
     }
-    if (startsBefore(event_starts, event_ends) === false) {
+    if (isAfterOrOn(event_starts, event_ends) === false) {
       errors.push(
         "event_ends: Event end date must be after or on event start date"
       );
