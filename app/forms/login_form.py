@@ -20,7 +20,7 @@ def password_matches(form, field):
     if not user:
         raise ValidationError('Invalid email or password.')
     if not user.check_password(password):
-        raise ValidationError('Invald password.')
+        raise ValidationError('Invalid password.')
 
 
 class LoginForm(FlaskForm):

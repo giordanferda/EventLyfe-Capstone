@@ -25,23 +25,31 @@ function EventCard({ redirectToShow, event }) {
         </div>
       </div>
       <div className="event-location">
-        {event.address} {event.city}, {event.state}, {event.zipcode}
+        <i class="fa-solid fa-location-dot"></i> {event.address} {event.city},{" "}
+        {event.state}, {event.zipcode}
       </div>
       <div className="date-event">
+        <i class="fa-regular fa-calendar-days"></i>{" "}
         {formatDate(event.event_starts.split("-"))} -{" "}
         {formatDate(event.event_ends.split("-"))}
       </div>
       <div className="start-end-time">
+        <i class="fa-regular fa-clock"></i>{" "}
         {convertMilitaryTime(event.start_time)} -{" "}
         {convertMilitaryTime(event.end_time)}
       </div>
-      <div className="card-description">{event.description}</div>
+      {/* <div className="card-description">{event.description}</div> */}
       <div className="card-review-data">
         <div className="review-count">
+          <i class="fa-regular fa-comments"></i>{" "}
           {event?.review_ids.length == 1 ? (
-            <div>{event?.review_ids.length} review</div>
+            <div className="review-length">
+              {event?.review_ids.length} review
+            </div>
           ) : (
-            <div>{event?.review_ids.length} reviews</div>
+            <div className="review-length">
+              {event?.review_ids.length} reviews
+            </div>
           )}
         </div>
       </div>

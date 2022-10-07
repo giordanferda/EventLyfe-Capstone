@@ -10,6 +10,7 @@
   box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.1);
   transition: all 0.2s ease-in-out;
   background-color: #ffffff;
+  cursor: pointer;
 }
 
 .event-card:hover {
@@ -24,6 +25,7 @@
   display: flex;
   flex-direction: column;
   max-width: 480px;
+  min-height: 320px;
   max-height: 320px;
   width: 100%;
   height: 100%;
@@ -34,4 +36,16 @@
   font-size: 1.25rem;
   font-weight: 600;
   color: #000;
+}
+
+.card-descrpition {
+  overflow-wrap: break-word;
+}
+
+.review-count {
+  display: flex;
+}
+
+.review-length {
+  margin-left: 5px;
 }
