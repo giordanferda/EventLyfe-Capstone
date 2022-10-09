@@ -25,3 +25,7 @@
 .detail-buttons button {
   width: 45%;
 }
+
+.users-review {
+  overflow-wrap: break-word;
+}

@@ -158,7 +158,9 @@ function EventDetail() {
                 );
               })
             ) : (
-              <div style={{ paddingBottom: "25px" }}>No reviews. Yet...</div>
+              <div className="no-reviews" style={{ paddingBottom: "25px" }}>
+                No reviews yet.
+              </div>
             )}
           </div>
         </div>

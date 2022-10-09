@@ -168,7 +168,7 @@ function EditEventForm({ closeModal }) {
 
   return (
     <div className="edit-content-container">
-      <form onSubmit={handleSubmit}>
+      <form className="edit-form-event" onSubmit={handleSubmit}>
         <h2 className="EditEventTitle">Edit Your Event</h2>
         <div className="create-event-errors">
           {errors.length > 0 &&
@@ -239,37 +239,28 @@ function EditEventForm({ closeModal }) {
               onChange={(e) => setAddress(e.target.value)}
             ></input>
           </div>
-          {/* <div>
-        <label>Ticket quantity</label>
-        <input
-        className="edit-event-Ticket-quantity"
-        placeholder="Ticket Quantity"
-        required
-        value={ticket_quantity}
-        type="number"
-        onChange={(e) => setTicketQuantity(e.target.value)}
-        ></input>
-      </div> */}
-          <div className="event-first-container-description edit-event-input">
-            <label>State</label>
-            <select
-              value={state}
-              style={errorStyle(errors, "state")}
-              onChange={(e) => {
-                setState(e.target.value);
-              }}
-            >
-              {STATES.map((state) => (
-                <option key={state} value={state}>
-                  {state}
-                </option>
-              ))}
-            </select>
-          </div>
           <div className="create-event-city-zip">
+            <div className="event-first-container-description edit-event-input">
+              <label>State</label>
+              <select
+                className="three-line"
+                value={state}
+                style={errorStyle(errors, "state")}
+                onChange={(e) => {
+                  setState(e.target.value);
+                }}
+              >
+                {STATES.map((state) => (
+                  <option key={state} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </select>
+            </div>
             <div className="event-first-container-description">
               <label>City</label>
               <select
+                className="three-line"
                 style={errorStyle(errors, "city")}
                 onChange={(e) => {
                   const city = e.target.value;
@@ -287,7 +278,7 @@ function EditEventForm({ closeModal }) {
             <div className="event-first-container-description">
               <label>Zip Code</label>
               <input
-                className="edit-event-zipcode"
+                className="edit-event-zipcode three-line"
                 placeholder="Zip Code"
                 required
                 value={zipcode}

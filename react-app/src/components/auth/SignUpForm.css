@@ -2,3 +2,38 @@
   color: red;
   font-weight: 400;
 }
+
+.flex-child {
+  display: flex;
+  width: auto;
+  justify-content: center;
+}
+
+.flex-child form div {
+  width: 100%;
+}
+
+.left-login {
+  width: 100%;
+}
+
+.signup-event {
+  width: 75%;
+}
+
+.flex-container {
+  width: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.signup-button {
+  width: 50%;
+}
+
+.sign-but {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin-top: 5px;
+}
