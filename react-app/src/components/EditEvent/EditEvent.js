@@ -67,14 +67,14 @@ function EditEventForm({ closeModal }) {
 
     if (!previewUrl.match(imageUrlValid)) {
       errors.push(
-        "preview_url: Preview url must end in valid img extension [png/jpg/jpeg]"
+        "preview_url: Preview image url must end in valid img extension [png/jpg/jpeg]"
       );
     }
-    if (name.length > 40) {
-      errors.push("name: Name must be less than 40 characters");
+    if (name.length > 50) {
+      errors.push("name: Event Name must be less than 50 characters");
     }
     if (name.length < 3) {
-      errors.push("name: Name must be more than 3 characters");
+      errors.push("name: Event Name must be more than 3 characters");
     }
     if (description.length > 350) {
       errors.push("description: Description must be less than 350 characters");
@@ -82,8 +82,8 @@ function EditEventForm({ closeModal }) {
     if (description.length < 10) {
       errors.push("description: Description must be more than 10 characters");
     }
-    if (address.length > 75) {
-      errors.push("address: Address must be less than 75 characters");
+    if (address.length > 50) {
+      errors.push("address: Address must be less than 50 characters");
     }
     if (address.length < 5) {
       errors.push("address: Address must be more than 5 characters");
@@ -94,14 +94,12 @@ function EditEventForm({ closeModal }) {
     if (ticket_quantity > 2500) {
       errors.push("ticket_quantity: Ticket quantity must be less than 2500");
     }
-    if (JSON.stringify(zipcode).length !== 5) {
+    if (zipcode.toString().length !== 5) {
       errors.push("zipcode: Zipcode must be 5 digits");
     }
-    if (
-      JSON.stringify(zipcode).match(/^[a-zA-Z0-9!@#$%^&()_+-=[]{};':"\|,.<>/)
-    ) {
-      errors.push("zipcode: Zipcode must be a number");
-    }
+    // if (zipcode.match(/^[a-zA-Z0-9!@#$%^&()_+-=[]{};':"\|,.<>/)) {
+    //   errors.push("zipcode: Zipcode must be a number");
+    // }
     if (event_starts.length < 1) {
       errors.push("event_starts: Event start date must be filled out");
     }
@@ -109,7 +107,14 @@ function EditEventForm({ closeModal }) {
       errors.push("event_ends: Event end date must be filled out");
     }
     if (startsBefore(event_starts, getCurrentDate()) === false) {
-      errors.push("event_starts: Event start date must be in the future");
+      errors.push(
+        "event_starts: Event start date must be in the present or future"
+      );
+    }
+    if (startsBefore(event_ends, getCurrentDate()) === false) {
+      errors.push(
+        "event_ends: Event end date must be in the present or future."
+      );
     }
     if (start_time.length < 1) {
       errors.push("start_time: Event start time must be filled out");
@@ -126,7 +131,7 @@ function EditEventForm({ closeModal }) {
     }
     if (isAfterOrOn(event_starts, event_ends) === false) {
       errors.push(
-        "event_ends: Event end date must be after or on event start date"
+        "event_ends: Event end date must be on or after event start date"
       );
     }
     if (cityAndStates[city] !== state) {

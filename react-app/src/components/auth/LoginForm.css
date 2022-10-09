@@ -5,6 +5,7 @@
 .flex-child {
   flex: 1;
   border-bottom: 33%;
+  gap: 10px;
 }
 
 .flex-child:first-child {
@@ -17,6 +18,18 @@
 }
 
 .left-login {
+  display: flex;
+  align-items: center;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.flex-child left-login {
   display: flex;
   align-items: center;
 }

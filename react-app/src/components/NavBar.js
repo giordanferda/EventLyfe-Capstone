@@ -41,7 +41,7 @@ const NavBar = ({ loaded }) => {
             <ProfileButton user={currentUser} />
           ) : (
             <NavLink to="/login" exact={true} activeClassName="active">
-              <button>Log In</button>
+              <button className="login-button">Log In</button>
             </NavLink>
           )}
         </div>

@@ -83,3 +83,7 @@
   color: red;
   font-weight: 600;
 }
+
+.desc-input-event {
+  height: 89px;
+}

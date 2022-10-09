@@ -49,7 +49,7 @@ const LoginForm = () => {
 
   return (
     <div className="flex-container">
-      <div className="flex-child green left-login">
+      <div className="flex-child left-login">
         <form onSubmit={onLogin} className="loginForm">
           <div className="create-event-errors">
             {backendErrors.map((error, ind) => (
@@ -57,6 +57,13 @@ const LoginForm = () => {
             ))}
           </div>
           <div>
+            <h2>Welcome To EventLyfe</h2>
+            <h3>
+              Please Login or <span> or </span>
+              <Link to="/signup">Sign up Here</Link>
+            </h3>
+          </div>
+          <div className="input-container">
             <label htmlFor="email">Email</label>
             <input
               name="email"
@@ -68,7 +75,7 @@ const LoginForm = () => {
             />
             <div className="signup-error-message">{errors?.email}</div>
           </div>
-          <div>
+          <div className="input-container">
             <label htmlFor="password">Password</label>
             <input
               name="password"
@@ -80,8 +87,6 @@ const LoginForm = () => {
             />
             <div className="signup-error-message">{errors?.password}</div>
             <button type="submit">Log in</button>
-            <span> or </span>
-            <Link to="/signup">Sign up Here</Link>
           </div>
           <button
             disabled={errors.length > 0}
