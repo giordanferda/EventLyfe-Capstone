@@ -1,11 +1,13 @@
 import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useHistory, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./NavBar.css";
 import ProfileButton from "./ProfileButton";
 import logo from "./eventlyfe-logo.png";
 
 const NavBar = ({ loaded }) => {
+  const history = useHistory();
+  const location = useLocation();
   const sessionUser2 = useSelector((state) => state.session.user);
 
   let currentUser;
@@ -27,6 +29,15 @@ const NavBar = ({ loaded }) => {
           </NavLink>
         </div>
         <div className="navbar-links">
+          {location.pathname !== "/about" && (
+            <button
+              onClick={() => {
+                history.push("/about");
+              }}
+            >
+              About Me
+            </button>
+          )}
           <div>
             <NavLink to="/createEvent" exact={true} activeClassName="active">
               <button className="create-event-button">Create Event</button>

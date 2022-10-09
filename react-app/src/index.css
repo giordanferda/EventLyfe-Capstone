@@ -35,3 +35,23 @@ input[type="date"],
 input[type="select"] {
   padding-left: 15px;
 }
+
+button {
+  background-color: #5d47ec;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+button:hover {
+  transition: 0.2s ease-in-out;
+  opacity: 0.9;
+}
+
+ul,
+li {
+  list-style: none;
+}

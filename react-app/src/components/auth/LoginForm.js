@@ -59,13 +59,14 @@ const LoginForm = () => {
           <div>
             <h2>Welcome To EventLyfe</h2>
             <h3>
-              Please Login or <span> or </span>
+              Please Login <span> or </span>
               <Link to="/signup">Sign up Here</Link>
             </h3>
           </div>
           <div className="input-container">
             <label htmlFor="email">Email</label>
             <input
+              className="event-first-container-input"
               name="email"
               type="text"
               placeholder="Email"
@@ -78,6 +79,7 @@ const LoginForm = () => {
           <div className="input-container">
             <label htmlFor="password">Password</label>
             <input
+              className="event-first-container-input"
               name="password"
               type="password"
               placeholder="Password"
@@ -86,19 +88,21 @@ const LoginForm = () => {
               required
             />
             <div className="signup-error-message">{errors?.password}</div>
-            <button type="submit">Log in</button>
           </div>
-          <button
-            disabled={errors.length > 0}
-            onClick={() => {
-              setEmail("demo@aa.io");
-              setPassword("password");
-            }}
-            type="submit"
-            className="demo-user"
-          >
-            Demo Login
-          </button>
+          <div className="button-flex-row">
+            <button type="submit">Log in</button>
+            <button
+              disabled={errors.length > 0}
+              onClick={() => {
+                setEmail("demo@aa.io");
+                setPassword("password");
+              }}
+              type="submit"
+              className="demo-user"
+            >
+              Demo Login
+            </button>
+          </div>
         </form>
       </div>
       <div className="flex-child blue">

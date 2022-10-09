@@ -69,7 +69,7 @@ const CreateReview = ({ event, closeModal }) => {
           <i class="fa-regular fa-star"></i> Stars
         </label>
         <input
-          className="event-first-container-input"
+          className="event-first-container-input review-input"
           value={stars}
           style={errorStyle(errors, "stars")}
           onChange={(e) => setStars(e.target.value)}
@@ -83,7 +83,7 @@ const CreateReview = ({ event, closeModal }) => {
         </label>
         <input
           value={review}
-          className="event-first-container-input"
+          className="event-first-container-input review-input"
           style={errorStyle(errors, "review")}
           onChange={(e) => setReview(e.target.value)}
           placeholder="Review"

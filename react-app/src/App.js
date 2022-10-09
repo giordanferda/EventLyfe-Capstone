@@ -14,7 +14,7 @@ import CreateEvent from "./components/CreateEvent/CreateEvent";
 import "./index.css";
 import ManageEvents from "./components/ManageEvents/ManageEvents";
 import * as reviewActions from "./store/review";
-import Footer from "./components/FooterAbout/Footer";
+import AboutMe from "./components/AboutMe/AboutMe";
 import BrokenLink from "./components/404Page.js/404Page";
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -55,6 +55,9 @@ function App() {
           <Route path="/events/:eventId" exact={true}>
             <EventDetail />
           </Route>
+          <Route path="/about" exact={true}>
+            <AboutMe />
+          </Route>
           <ProtectedRoute path="/createEvent" exact={true}>
             <CreateEvent />
           </ProtectedRoute>
@@ -65,7 +68,7 @@ function App() {
             <BrokenLink />
           </Route>
         </Switch>
-        <Footer loaded={loaded} />
+        {/* <Footer loaded={loaded} /> */}
       </div>
     </BrowserRouter>
   );

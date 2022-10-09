@@ -69,6 +69,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 10%;
 }
 
 .event-img-two {
@@ -102,4 +103,18 @@
   display: flex;
   justify-content: center;
   overflow-wrap: anywhere;
+}
+
+.reviews-inner-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reviews-header span {
+  font-weight: 650;
+  font: bolder;
+}
+.reviews-inner-container:not(:last-child) {
+  border: 1px solid red;
 }

@@ -6,7 +6,7 @@ import ShowStars from "../../ShowStars";
 import EditReviewModal from "../EditReview/EditReviewModal";
 import { useHistory } from "react-router-dom";
 
-function ReviewCard({ review }) {
+function ReviewCard({ review, border }) {
   const sessionUser = useSelector((state) => state.session.user);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -16,30 +16,30 @@ function ReviewCard({ review }) {
   };
 
   return (
-    <div className="review-card">
-      <div className="review-container"></div>
+    <div
+      className="review-card"
+      style={{ borderBottom: border ? null : "0.5px solid #e8e8e8" }}
+    >
       <div className="review-card-info">
         <div className="review-card-user">{review?.user.username}</div>
-      </div>
-      <div className="stars-review">
         <div>{new Date(review?.created_at).toLocaleDateString()}</div>
-        <div>
-          {" "}
-          <i class="fa-solid fa-star"></i> {review?.stars}
-        </div>
-        <div className="users-review">{review?.review}</div>
-        {review?.user_id == sessionUser?.id ? (
-          <>
-            <EditReviewModal review={review} />
-            <button
-              className="delete-rev"
-              onClick={(e) => handleDelete(e, review?.id)}
-            >
-              Delete Review
-            </button>
-          </>
-        ) : null}
       </div>
+
+      <span>
+        <i class="fa-solid fa-star"></i> {review?.stars}
+      </span>
+      <div className="users-review">{review?.review}</div>
+      {review?.user_id == sessionUser?.id ? (
+        <div className="detail-buttons">
+          <EditReviewModal review={review} />
+          <button
+            className="delete-rev"
+            onClick={(e) => handleDelete(e, review?.id)}
+          >
+            Delete Review
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }
