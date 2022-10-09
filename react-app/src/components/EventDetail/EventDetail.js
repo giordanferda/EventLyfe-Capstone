@@ -138,12 +138,25 @@ function EventDetail() {
         </div>
         <div className="event-reviews-container">
           {/* Show every Review Card Here */}
-          <div className="reviews-header header">Reviews</div>
+          <div className="reviews-header header">
+            <span>
+              <i class="fa-solid fa-comment"></i> Reviews
+            </span>{" "}
+            {event?.review_ids.length}{" "}
+            {event?.review_ids.length !== 1 ? "Reviews" : "Review"}
+          </div>
           <div className="reviews-inner-container">
             {event?.review_ids.length ? (
-              event?.review_ids.map((reviewId) => (
-                <ReviewCard key={reviewId} review={reviews[reviewId]} />
-              ))
+              event?.review_ids.map((reviewId, i) => {
+                const border = i === event?.review_ids.length - 1;
+                return (
+                  <ReviewCard
+                    key={reviewId}
+                    review={reviews[reviewId]}
+                    border={border}
+                  />
+                );
+              })
             ) : (
               <div style={{ paddingBottom: "25px" }}>No reviews. Yet...</div>
             )}

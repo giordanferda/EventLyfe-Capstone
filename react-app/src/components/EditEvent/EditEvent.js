@@ -70,8 +70,8 @@ function EditEventForm({ closeModal }) {
         "preview_url: Preview image url must end in valid img extension [png/jpg/jpeg]"
       );
     }
-    if (name.length > 50) {
-      errors.push("name: Event Name must be less than 50 characters");
+    if (name.length > 35) {
+      errors.push("name: Event Name must be less than 35 characters");
     }
     if (name.length < 3) {
       errors.push("name: Event Name must be more than 3 characters");

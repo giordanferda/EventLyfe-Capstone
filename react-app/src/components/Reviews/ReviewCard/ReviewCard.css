@@ -1,0 +1,27 @@
+.event-reviews-container {
+  padding: 0px 20px;
+  width: 50%;
+}
+
+.review-card-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.review-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 10px;
+}
+
+.detail-buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.detail-buttons button {
+  width: 45%;
+}
