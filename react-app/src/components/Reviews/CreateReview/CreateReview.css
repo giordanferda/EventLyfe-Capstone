@@ -12,13 +12,14 @@
 }
 
 .review-form {
-  border-radius: 15px;
   /* height: 400px; */
   /* width: 300px; */
+  padding: 20px;
 }
 
 .review-Title {
   display: flex;
+  gap: 7px;
   justify-content: center;
   align-items: center;
 }
@@ -27,6 +28,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: auto;
+  overflow-wrap: break-word;
 }
 
 .star-review-input {
@@ -34,14 +37,16 @@
   flex-direction: column;
   justify-content: center;
   width: 100%;
+  gap: 10px;
   /* align-items: center; */
 }
 
-/*
 .submitButton-review {
   margin-top: 10px;
-  margin-left: 35%;
-} */
+}
+
+/*
+
 
 /* .star-label {
   margin-top: 10px;
@@ -57,7 +62,3 @@
 .review-label {
   margin-top: 10px;
 } */
-
-.review-input {
-  width: 100%;
-}

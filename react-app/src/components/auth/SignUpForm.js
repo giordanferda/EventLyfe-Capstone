@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import { signUp } from "../../store/session";
 import signupImg from "../login-signup.png";
 import { capitalizeWord } from "../../util/stringUtil";
@@ -116,16 +116,24 @@ const SignUpForm = () => {
 
   return (
     <div className="flex-container">
-      <div className="flex-child green left-login">
-        <form onSubmit={onSignUp}>
+      <div className="flex-child left-login">
+        <form className="signup-event" onSubmit={onSignUp}>
           <div className="create-event-errors">
             {backendErrors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
           </div>
           <div>
+            <h2>Welcome To EventLyfe</h2>
+            <h3>
+              Please Sign Up <span> or </span>
+              <Link to="/login">Log in here</Link>
+            </h3>
+          </div>
+          <div className="input-container">
             <label>User Name</label>
             <input
+              className="event-first-container-input"
               type="text"
               name="username"
               onChange={updateUsername}
@@ -134,9 +142,10 @@ const SignUpForm = () => {
             ></input>
             <div className="signup-error-message">{errors?.username}</div>
           </div>
-          <div>
+          <div className="input-container">
             <label>First Name</label>
             <input
+              className="event-first-container-input"
               type="text"
               name="firstName"
               onChange={updateFirstName}
@@ -145,9 +154,10 @@ const SignUpForm = () => {
             ></input>
             <div className="signup-error-message">{errors?.firstName}</div>
           </div>
-          <div>
+          <div className="input-container">
             <label>Last Name</label>
             <input
+              className="event-first-container-input"
               type="text"
               name="lastName"
               onChange={updateLastName}
@@ -156,9 +166,10 @@ const SignUpForm = () => {
             ></input>
             <div className="signup-error-message">{errors?.lastName}</div>
           </div>
-          <div>
+          <div className="input-container">
             <label>Email</label>
             <input
+              className="event-first-container-input"
               type="text"
               name="email"
               onChange={updateEmail}
@@ -167,9 +178,10 @@ const SignUpForm = () => {
             ></input>
             <div className="signup-error-message">{errors?.email}</div>
           </div>
-          <div>
+          <div className="input-container">
             <label>Password</label>
             <input
+              className="event-first-container-input"
               type="password"
               name="password"
               onChange={updatePassword}
@@ -178,9 +190,10 @@ const SignUpForm = () => {
             ></input>
             <div className="signup-error-message">{errors?.password}</div>
           </div>
-          <div>
+          <div className="input-container">
             <label>Repeat Password</label>
             <input
+              className="event-first-container-input"
               type="password"
               name="repeat_password"
               onChange={updateRepeatPassword}
@@ -189,16 +202,19 @@ const SignUpForm = () => {
             ></input>
             <div className="signup-error-message">{errors?.repeatPassword}</div>
           </div>
-          <button
-            disabled={
-              errors.length > 0
-              // ? (style = { cursor: "not-allowed" })
-              // : (style = { cursor: "pointer" })
-            }
-            type="submit"
-          >
-            Sign Up
-          </button>
+          <div className="sign-but">
+            <button
+              className="signup-button"
+              disabled={
+                errors.length > 0
+                // ? (style = { cursor: "not-allowed" })
+                // : (style = { cursor: "pointer" })
+              }
+              type="submit"
+            >
+              Sign Up
+            </button>
+          </div>
         </form>
       </div>
       <div className="flex-child blue">

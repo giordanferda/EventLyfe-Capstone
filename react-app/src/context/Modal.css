@@ -25,11 +25,11 @@
   background-color: white;
   display: flex;
   justify-content: center;
+  min-width: 420px;
 
   /* max-height: 50%; */
   width: 30%;
   z-index: 999;
-  border-radius: 15px;
   animation-duration: 400ms;
   animation-iteration-count: 1;
   animation-fill-mode: both;

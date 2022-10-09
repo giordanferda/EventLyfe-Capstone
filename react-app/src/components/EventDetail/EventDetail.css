@@ -97,6 +97,7 @@
   display: flex;
   flex-direction: row;
   padding: 20px 30px;
+  border-bottom: 0.5px solid #e8e8e8;
 }
 
 .event-detail-name {
@@ -117,4 +118,12 @@
 }
 .reviews-inner-container:not(:last-child) {
   border: 1px solid red;
+}
+
+.no-reviews {
+  padding: 20px;
+}
+
+.event-reviews-container {
+  margin-top: 20px;
 }

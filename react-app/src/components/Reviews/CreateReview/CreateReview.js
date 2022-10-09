@@ -39,12 +39,17 @@ const CreateReview = ({ event, closeModal }) => {
     if (review.length > 255) {
       errors.push("Review must be less than 255 characters");
     }
+    const parsedStars = parseInt(stars);
+    if (parsedStars < 1 || parsedStars > 5) {
+      errors.push("Stars must be between 1 and 5");
+    }
     setErrors(errors);
-  }, [review]);
+  }, [review, stars]);
   return (
     <form className="review-form" onSubmit={handleSubmit}>
       <h3 className="review-Title">
-        <i class="fa-solid fa-magnifying-glass"></i> Write Your Review
+        <i class="fa-solid fa-magnifying-glass"></i>{" "}
+        <span>Write Your Review</span>
       </h3>
       <p className="review-sentence">
         <i class="fa-thin fa-message-dots"></i>

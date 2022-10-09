@@ -42,7 +42,8 @@
 .event-first-container-input {
   height: 50px;
   padding: 2px;
-  padding-left: 3px;
+  padding-left: 15px;
+  width: auto;
 }
 
 .event-location-row {
