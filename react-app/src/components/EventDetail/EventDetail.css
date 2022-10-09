@@ -80,6 +80,7 @@
   background-color: #f5f7f8;
   width: 100%;
   padding: 20px;
+  overflow-wrap: break-word;
 }
 
 .bigger-desc {
@@ -89,7 +90,6 @@
 .smaller-desc {
   width: 35%;
   padding: 10px;
-  overflow-wrap: break-word;
 }
 
 .event-desc {
@@ -101,4 +101,5 @@
 .event-detail-name {
   display: flex;
   justify-content: center;
+  overflow-wrap: anywhere;
 }

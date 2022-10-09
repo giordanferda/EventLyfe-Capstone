@@ -62,14 +62,14 @@ function CreateEvent() {
 
     if (!previewUrl.match(imageUrlValid)) {
       errors.push(
-        "preview_url: Preview url must end in valid img extension [png/jpg/jpeg]"
+        "preview_url: Preview image url must end in valid img extension [png/jpg/jpeg]"
       );
     }
-    if (name.length > 40) {
-      errors.push("name: Name must be less than 40 characters");
+    if (name.length > 50) {
+      errors.push("name: Event Name must be less than 50 characters");
     }
     if (name.length < 3) {
-      errors.push("name: Name must be more than 3 characters");
+      errors.push("name: Event Name must be more than 3 characters");
     }
     if (description.length > 350) {
       errors.push("description: Description must be less than 350 characters");
@@ -77,8 +77,8 @@ function CreateEvent() {
     if (description.length < 10) {
       errors.push("description: Description must be more than 10 characters");
     }
-    if (address.length > 75) {
-      errors.push("address: Address must be less than 75 characters");
+    if (address.length > 50) {
+      errors.push("address: Address must be less than 50 characters");
     }
     if (address.length < 5) {
       errors.push("address: Address must be more than 5 characters");
@@ -102,7 +102,14 @@ function CreateEvent() {
       errors.push("event_ends: Event end date must be filled out");
     }
     if (startsBefore(event_starts, getCurrentDate()) === false) {
-      errors.push("event_starts: Event start date must be in the future");
+      errors.push(
+        "event_starts: Event start date must be in the present or future."
+      );
+    }
+    if (startsBefore(event_ends, getCurrentDate()) === false) {
+      errors.push(
+        "event_ends: Event end date must be in the present or future."
+      );
     }
     if (start_time.length < 1) {
       errors.push("start_time: Event start time must be filled out");
@@ -119,7 +126,7 @@ function CreateEvent() {
     }
     if (isAfterOrOn(event_starts, event_ends) === false) {
       errors.push(
-        "event_ends: Event end date must be after or on event start date"
+        "event_ends: Event end date must be on or after event start date"
       );
     }
     if (cityAndStates[city] !== state) {
@@ -193,7 +200,7 @@ function CreateEvent() {
           <div className="event-first-container-description">
             <label>Description</label>
             <input
-              className="event-first-container-input"
+              className="event-first-container-input desc-input-event"
               placeholder="Description"
               required
               value={description}

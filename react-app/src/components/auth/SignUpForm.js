@@ -68,8 +68,16 @@ const SignUpForm = () => {
     if (!email) postErrors.email = "Please enter an email";
     if (password.length < 6)
       postErrors.password = "Password must be at least 6 characters";
-    if (password.length > 255)
-      postErrors.password = "Password must be less than 255 characters";
+    if (password.length > 50)
+      postErrors.password = "Password must be less than 50 characters";
+    if (firstName.length === 0)
+      postErrors.firstName = "Please enter your first name";
+    if (firstName.length > 50)
+      postErrors.firstName = "First name must be less than 50 characters";
+    if (lastName.length === 0)
+      postErrors.lastName = "Please enter your last name";
+    if (lastName.length > 50)
+      postErrors.lastName = "Last name must be less than 50 characters";
     if (!password) postErrors.password = "Please enter a password";
     if (!repeatPassword)
       postErrors.repeatPassword = "Please repeat your password";
@@ -77,7 +85,7 @@ const SignUpForm = () => {
       postErrors.repeatPassword = "Passwords must match";
 
     setErrors(postErrors);
-  }, [username, email, password, repeatPassword]);
+  }, [username, firstName, lastName, email, password, repeatPassword]);
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -135,6 +143,7 @@ const SignUpForm = () => {
               value={firstName}
               required
             ></input>
+            <div className="signup-error-message">{errors?.firstName}</div>
           </div>
           <div>
             <label>Last Name</label>
@@ -145,6 +154,7 @@ const SignUpForm = () => {
               value={lastName}
               required
             ></input>
+            <div className="signup-error-message">{errors?.lastName}</div>
           </div>
           <div>
             <label>Email</label>

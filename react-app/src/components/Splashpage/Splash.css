@@ -18,9 +18,15 @@
 
 .viewallevents {
   position: absolute;
-  left: 55px;
+  left: 62%;
   bottom: 160px;
   color: white;
+  transition: scale 0.2s ease-in-out;
+  outline: 1px solid white;
+  border-radius: 20px;
+}
+.viewallevents:hover {
+  scale: 1.1;
 }
 .view-all-button {
   border-radius: 20px;
