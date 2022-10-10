@@ -17,6 +17,13 @@
   height: 100%;
 }
 
+.logo-img {
+  transform: translate(-15px, 0px);
+}
+
+.auth-header {
+  font-size: 3rem;
+}
 .left-login {
   display: flex;
   align-items: center;
@@ -57,4 +64,8 @@
   width: 45%;
   border: none;
   outline: 1px solid #e8e8e8;
+}
+
+.create-event-errors {
+  margin: 15px 0px;
 }

@@ -1,13 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory, Redirect } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { deleteEventById } from "../../store/event";
 import { formatDate, convertMilitaryTime } from "../../util/datesUtil";
 import EditEventModal from "../EditEvent/EditEventModal";
-import CreateReview from "../Reviews/CreateReview/CreateReview";
 import ReviewModal from "../Reviews/CreateReview/ReviewModal";
 import ReviewCard from "../Reviews/ReviewCard/ReviewCard";
 import defaultImage from "../defaultImage.jpg";
-
+import { MONTHS } from "../../util/datesUtil";
 import "./EventDetail.css";
 //dummy commit pt 2 reseeding
 function EventDetail() {
@@ -15,11 +14,8 @@ function EventDetail() {
   let currentUser;
   const sessionUser = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
-  const history = useHistory();
   const event = useSelector((state) => state.event[eventId]);
   const reviews = useSelector((state) => state.reviews);
-  const user = useSelector((state) => state.session.user);
-
   async function handleDelete(e) {
     e.preventDefault();
     await dispatch(deleteEventById(eventId));
@@ -47,6 +43,18 @@ function EventDetail() {
   //   return alreadyReviewedByUser;
   // }
 
+  const renderEventStartColumn = (date) => {
+    const dateArray = date.split("-");
+    const month = MONTHS[dateArray[1]].slice(0, 3);
+    const day = dateArray[2];
+    return (
+      <>
+        <div>{month}</div>
+        <div>{day}</div>
+      </>
+    );
+  };
+
   if (sessionUser && event) {
     if (sessionUser.id === event.event_owner.id) {
       currentUser = true;
@@ -60,6 +68,7 @@ function EventDetail() {
     <div className="event-detail-container">
       <div className="event-detail-image">
         <img
+          alt="Failed to load asset"
           className="event-preview-image"
           src={event?.preview_image}
           onError={(e) => (e.target.src = defaultImage)}
@@ -68,23 +77,24 @@ function EventDetail() {
       <div className="event-info-wrapper">
         <div className="early-access">
           <img
+            alt="Failed to load asset"
             className="event-img-two"
             src={event?.preview_image}
             onError={(e) => (e.target.src = defaultImage)}
           />
           <div className="early-access-right-info">
+            <div className="event-date-column">
+              {renderEventStartColumn(event?.event_starts)}
+            </div>
             <h2 className="event-detail-name">{event?.name}</h2>
-            {/* <h4 className="hosted-by">
-              Hosted By: {user?.firstname} {user?.lastname}
-            </h4> */}
+            <div className="early-access-text">Early Access</div>
+            <h4 className="hosted-by">
+              Hosted By: {event?.event_owner.firstname}{" "}
+              {event?.event_owner.lastname}
+            </h4>
           </div>
         </div>
         <div className="ticket-box">
-          {/* <ul>
-            <li>B1</li>
-            <li>heart</li>
-          </ul> */}
-
           <div className="ticketbox-buttons">
             {sessionUser &&
               sessionUser.id !== event?.event_owner.id &&

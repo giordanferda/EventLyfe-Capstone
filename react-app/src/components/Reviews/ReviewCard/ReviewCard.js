@@ -2,13 +2,10 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import "./ReviewCard.css";
 import { deleteReviewById } from "../../../store/review";
-import ShowStars from "../../ShowStars";
 import EditReviewModal from "../EditReview/EditReviewModal";
-import { useHistory } from "react-router-dom";
 
 function ReviewCard({ review, border }) {
   const sessionUser = useSelector((state) => state.session.user);
-  const history = useHistory();
   const dispatch = useDispatch();
   const handleDelete = async (e, id) => {
     e.preventDefault();
@@ -29,7 +26,7 @@ function ReviewCard({ review, border }) {
         <i class="fa-solid fa-star"></i> {review?.stars}
       </span>
       <div className="users-review">{review?.review}</div>
-      {review?.user_id == sessionUser?.id ? (
+      {review?.user_id === sessionUser?.id ? (
         <div className="detail-buttons">
           <EditReviewModal review={review} />
           <button

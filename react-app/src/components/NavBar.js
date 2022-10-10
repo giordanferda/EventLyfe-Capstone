@@ -1,10 +1,10 @@
 import React from "react";
-import { NavLink, Link, useHistory, useLocation } from "react-router-dom";
+import { NavLink, useHistory, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./NavBar.css";
 import ProfileButton from "./ProfileButton";
 import logo from "./eventlyfe-logo.png";
-
+import { restrictedNavbarPathnames } from "../util/data";
 const NavBar = ({ loaded }) => {
   const history = useHistory();
   const location = useLocation();
@@ -14,7 +14,9 @@ const NavBar = ({ loaded }) => {
 
   if (sessionUser2) currentUser = true;
   else currentUser = false;
-
+  if (restrictedNavbarPathnames[location.pathname] === true) {
+    return null;
+  }
   return (
     <nav>
       <div className="navbar-container">

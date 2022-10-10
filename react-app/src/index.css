@@ -18,6 +18,7 @@ body {
 
 * {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  overflow-wrap: break-word;
 }
 
 input {
@@ -54,4 +55,12 @@ button:hover {
 ul,
 li {
   list-style: none;
+}
+
+h3 {
+  margin: 0;
+}
+
+i {
+  color: #5d47ec;
 }

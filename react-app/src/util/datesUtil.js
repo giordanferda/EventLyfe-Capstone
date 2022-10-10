@@ -1,4 +1,4 @@
-const MONTHS = {
+export const MONTHS = {
   "01": "January",
   "02": "February",
   "03": "March",

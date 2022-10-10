@@ -18,7 +18,7 @@ function EditEventForm({ closeModal }) {
   const [name, setName] = useState(event.name);
   const [description, setDescription] = useState(event.description);
   const [address, setAddress] = useState(event.address);
-  const [ticket_quantity, setTicketQuantity] = useState(event.ticket_quantity);
+  const [ticket_quantity] = useState(event.ticket_quantity);
   const [state, setState] = useState(event.state);
   const [city, setCity] = useState(event.city);
   const [zipcode, setZipcode] = useState(event.zipcode);

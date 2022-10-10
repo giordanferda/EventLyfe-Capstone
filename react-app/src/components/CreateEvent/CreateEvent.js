@@ -18,7 +18,7 @@ function CreateEvent() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
   const [address, setAddress] = useState("");
-  const [ticket_quantity, setTicketQuantity] = useState(300);
+  const [ticket_quantity] = useState(300);
   const [state, setState] = useState("Alabama");
   const [city, setCity] = useState("Prattville");
   const [zipcode, setZipcode] = useState("");
@@ -169,7 +169,7 @@ function CreateEvent() {
           {errors.length > 0 &&
             errors.map((error, i) => (
               <div className="eventErrors">
-                <div key={i} className="eventError">
+                <div key={i + 0} className="eventError">
                   {error.split(": ")[1]}
                 </div>
               </div>
@@ -178,7 +178,7 @@ function CreateEvent() {
         <div className="event-first-container">
           <h1 className="eventh1">
             {" "}
-            <i class="fa-regular fa-file-lines"></i> Basic Info
+            <i className="fa-regular fa-file-lines"></i> Basic Info
           </h1>
           <p>
             Name your event and tell event-goers why they should come. Add
@@ -227,7 +227,8 @@ function CreateEvent() {
         <div className="divider" />
         <div className="event-first-container ">
           <h1 className="eventh1">
-            <i class="fa-solid fa-calendar-days"></i> Location & Event Date/Time
+            <i className="fa-solid fa-calendar-days"></i> Location & Event
+            Date/Time
           </h1>
           <p>
             Help people discover your event and let attendees know where and
@@ -265,8 +266,8 @@ function CreateEvent() {
               }}
               className="event-first-container-input"
             >
-              {STATES.map((state) => (
-                <option key={state} value={state}>
+              {STATES.map((state, i) => (
+                <option key={`state-${i}`} value={state}>
                   {state}
                 </option>
               ))}
@@ -282,8 +283,8 @@ function CreateEvent() {
                 }}
                 className="event-first-container-input"
               >
-                {CITIES.map((city) => (
-                  <option key={city} value={city}>
+                {CITIES.map((city, i) => (
+                  <option key={`city-${i}`} value={city}>
                     {city}
                   </option>
                 ))}
