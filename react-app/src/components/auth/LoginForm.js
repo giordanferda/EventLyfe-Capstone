@@ -99,7 +99,7 @@ const LoginForm = () => {
               Demo Login
             </button>
           </div>
-          <Link to="/signup">Don't have an account?</Link>
+          <Link to="/signup">Sign Up Here</Link>
         </form>
       </div>
       <div className="flex-child blue">
