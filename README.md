@@ -45,3 +45,32 @@ flask seed all
 - Now, run `flask run` under EventLyfe and `npm start` under react-app
 
 ### Your local host should be running with full functionality now!
+
+
+# Splash Page
+![Splash](https://user-images.githubusercontent.com/93215380/194821804-1537d854-8e5e-460e-9bf0-f237f7487585.png)
+
+# Event Page
+![AllEvents](https://user-images.githubusercontent.com/93215380/194821931-7f7c997f-4647-4347-8fea-9f5afa5b5270.png)
+
+# Event Detail Page
+![EventDetail](https://user-images.githubusercontent.com/93215380/194822043-4517fff9-3e6d-4706-9ef7-b50581d39fde.png)
+
+# Manage Events Page
+![image](https://user-images.githubusercontent.com/93215380/194823670-a5429d77-d050-4649-b077-8c115e2d06b7.png)
+
+# Create Event Page
+![image](https://user-images.githubusercontent.com/93215380/194824283-6f47652e-8285-4341-8fbd-151c5b89c3a7.png)
+
+
+# Edit Event Modal
+![image](https://user-images.githubusercontent.com/93215380/194823610-22914519-dcfb-4369-b3ee-9e378a10702b.png)
+
+# Create Review Modal
+![image](https://user-images.githubusercontent.com/93215380/194823866-472294f6-28df-404d-aa70-4573852419c2.png)
+
+# Review Card
+![image](https://user-images.githubusercontent.com/93215380/194823997-a7f2941b-7286-4beb-8fb6-59d57c23cc74.png)
+
+
+
