@@ -4,8 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import { login } from "../../store/session";
 import "./LoginForm.css";
 import loginImg from "../login-signup.png";
-import { errorStyle } from "../../util/styleUtil";
-
+import img from "../eventlyfe-logo.png";
 const LoginForm = () => {
   const [errors, setErrors] = useState([]);
   const [backendErrors, setBackendErrors] = useState([]);
@@ -51,17 +50,14 @@ const LoginForm = () => {
     <div className="flex-container">
       <div className="flex-child left-login">
         <form onSubmit={onLogin} className="loginForm">
+          <div>
+            <img className="logo-img" alt="Not Found" src={img} />
+            <h3 className="auth-header">Log In</h3>
+          </div>
           <div className="create-event-errors">
             {backendErrors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
-          </div>
-          <div>
-            <h2>Welcome To EventLyfe</h2>
-            <h3>
-              Please Login <span> or </span>
-              <Link to="/signup">Sign up Here</Link>
-            </h3>
           </div>
           <div className="input-container">
             <label htmlFor="email">Email</label>
@@ -103,6 +99,7 @@ const LoginForm = () => {
               Demo Login
             </button>
           </div>
+          <Link to="/signup">Don't have an account?</Link>
         </form>
       </div>
       <div className="flex-child blue">

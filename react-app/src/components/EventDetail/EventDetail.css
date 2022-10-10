@@ -102,8 +102,7 @@
 
 .event-detail-name {
   display: flex;
-  justify-content: center;
-  overflow-wrap: anywhere;
+  flex-direction: column;
 }
 
 .reviews-inner-container {
@@ -126,4 +125,14 @@
 
 .event-reviews-container {
   margin-top: 20px;
+}
+
+.early-access-text {
+  background-color: rgb(255 230 190);
+  width: 30%;
+  text-align: center;
+  padding: 5px;
+  color: #1e0a3c;
+  font-weight: 500;
+  border-radius: 8px;
 }

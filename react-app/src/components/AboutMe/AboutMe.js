@@ -8,14 +8,37 @@ function AboutMe() {
         <div className="aboutme-desc">
           <h1 className="aboutme-title">Hey, My name is Giordan</h1>
           <p className="aboutme-text">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum.
+            My name is Giordan and I am a 24 year old Full Stack Software
+            Engineer based in Queens, New York City. I am a fitness
+            enthusiast-turned software engineer. I fell in love with programming
+            due to curiousity of real-world problems and natural intuition to
+            solving questions. In my personal time, I enjoy working out, playing
+            pickleball and spending time with my family. If anyone asks, my
+            favorite video game is Valorant. If you want to know more about me,
+            please feel free to reach out and connect with me.
           </p>
+          <div className="tech">
+            <i class="devicon-python-plain colored"></i>
+            <i class="devicon-javascript-plain colored"></i>
+            <i class="devicon-nodejs-plain colored"></i>
+            <i class="devicon-flask-original colored"></i>
+            <i class="devicon-express-original colored"></i>
+            <i class="devicon-github-original colored"></i>
+            <i class="devicon-react-original colored"></i>
+            <i class="devicon-redux-original colored"></i>
+            <i class="devicon-sqlite-plain colored"></i>
+            <i class="devicon-heroku-original colored"></i>
+            <i class="devicon-html5-plain colored"></i>
+            <i class="devicon-css3-plain colored"></i>
+            <i class="devicon-sequelize-plain colored"></i>
+            <i class="devicon-docker-plain colored"></i>
+            <i class="devicon-mocha-plain colored"></i>
+            <i class="devicon-vscode-plain colored"></i>
+            <i class="devicon-postgresql-plain colored"></i>
+            <i class="devicon-ubuntu-plain colored"></i>
+            <i class="devicon-google-plain-wordmark colored"></i>
+            <i class="devicon-chrome-plain"></i>
+          </div>
         </div>
       </div>
       <ul>

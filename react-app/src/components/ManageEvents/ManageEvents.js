@@ -1,30 +1,24 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as eventActions from "../../store/event";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import EventCard from "../EventCard";
-import { useState } from "react";
 import "./ManageEvents.css";
-import EditEventModal from "../EditEvent/EditEventModal";
 
 const ManageEvents = () => {
   const user = useSelector((state) => state.session.user);
   const events = useSelector((state) => Object.values(state.event));
-  const [showModal, setShowModal] = useState(false);
-
-  function closeModal() {
-    setShowModal(false);
-  }
-
   const filteredEvents = events.filter(
     (event) => event.event_owner.id === user.id
   );
+  const history = useHistory();
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(eventActions.getEvents());
-  }, []);
-
+  }, [dispatch]);
+  function redirectToShow(eventId) {
+    history.push(`/events/${eventId}`);
+  }
   if (!filteredEvents.length) {
     return (
       <div className="currentEventContainer">
@@ -43,7 +37,11 @@ const ManageEvents = () => {
             <div className="review-cards-inner-container">
               {filteredEvents.map((event, i) => (
                 <div className="user-review-card">
-                  <EventCard event={event} />
+                  <EventCard
+                    event={event}
+                    key={i}
+                    redirectToShow={redirectToShow}
+                  />
                 </div>
               ))}
             </div>

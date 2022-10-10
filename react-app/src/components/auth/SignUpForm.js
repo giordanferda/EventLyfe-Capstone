@@ -5,7 +5,7 @@ import { signUp } from "../../store/session";
 import signupImg from "../login-signup.png";
 import { capitalizeWord } from "../../util/stringUtil";
 import "./SignUpForm.css";
-import * as sessionActons from "../../store/session";
+import img from "../eventlyfe-logo.png";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -16,7 +16,7 @@ const SignUpForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [, setIsSubmitted] = useState(false);
 
   const user = useSelector((state) => state.session.user);
   const dispatch = useDispatch();
@@ -118,17 +118,14 @@ const SignUpForm = () => {
     <div className="flex-container">
       <div className="flex-child left-login">
         <form className="signup-event" onSubmit={onSignUp}>
+          <div>
+            <img className="logo-img" alt="Not Found" src={img} />
+            <h3 className="auth-header">Sign Up</h3>
+          </div>
           <div className="create-event-errors">
             {backendErrors.map((error, ind) => (
               <div key={ind}>{error}</div>
             ))}
-          </div>
-          <div>
-            <h2>Welcome To EventLyfe</h2>
-            <h3>
-              Please Sign Up <span> or </span>
-              <Link to="/login">Log in here</Link>
-            </h3>
           </div>
           <div className="input-container">
             <label>User Name</label>
@@ -215,6 +212,7 @@ const SignUpForm = () => {
               Sign Up
             </button>
           </div>
+          <Link to="/login">Log in here</Link>
         </form>
       </div>
       <div className="flex-child blue">
