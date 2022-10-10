@@ -8,7 +8,7 @@ const CreateReview = ({ event, closeModal }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const [review, setReview] = useState("");
-  const [stars, setStars] = useState("");
+  const [stars, setStars] = useState("5");
   const [errors, setErrors] = useState([]);
 
   const handleSubmit = async (e) => {
@@ -38,6 +38,9 @@ const CreateReview = ({ event, closeModal }) => {
     }
     if (review.length > 255) {
       errors.push("Review must be less than 255 characters");
+    }
+    if (stars.length === 0) {
+      errors.push("Please select a star rating");
     }
     const parsedStars = parseInt(stars);
     if (parsedStars < 1 || parsedStars > 5) {
