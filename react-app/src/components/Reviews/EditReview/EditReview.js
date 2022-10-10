@@ -50,6 +50,9 @@ const EditReview = ({ closeModal, rev }) => {
     if (review.length > 255) {
       errors.push("Review must be less than 255 characters");
     }
+    if (stars.length === 0) {
+      errors.push("Please select a star rating");
+    }
     const parsedStars = parseInt(stars);
     if (parsedStars < 1 || parsedStars > 5) {
       errors.push("Stars must be between 1 and 5");
