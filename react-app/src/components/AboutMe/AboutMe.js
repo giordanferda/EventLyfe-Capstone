@@ -17,6 +17,7 @@ function AboutMe() {
             favorite video game is Valorant. If you want to know more about me,
             please feel free to reach out and connect with me.
           </p>
+          <h3 className="tech-learned">Technologies Learned:</h3>
           <div className="tech">
             <i class="devicon-python-plain colored"></i>
             <i class="devicon-javascript-plain colored"></i>
@@ -32,12 +33,7 @@ function AboutMe() {
             <i class="devicon-css3-plain colored"></i>
             <i class="devicon-sequelize-plain colored"></i>
             <i class="devicon-docker-plain colored"></i>
-            <i class="devicon-mocha-plain colored"></i>
             <i class="devicon-vscode-plain colored"></i>
-            <i class="devicon-postgresql-plain colored"></i>
-            <i class="devicon-ubuntu-plain colored"></i>
-            <i class="devicon-google-plain-wordmark colored"></i>
-            <i class="devicon-chrome-plain"></i>
           </div>
         </div>
       </div>
