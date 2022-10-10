@@ -261,6 +261,7 @@ function EditEventForm({ closeModal }) {
               <label>City</label>
               <select
                 className="three-line"
+                value={city}
                 style={errorStyle(errors, "city")}
                 onChange={(e) => {
                   const city = e.target.value;
