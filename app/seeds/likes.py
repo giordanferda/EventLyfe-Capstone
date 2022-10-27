@@ -8,7 +8,7 @@ def seeded_likes():
             user_id=1, event_id=1, like=True
         ),
         Like(
-            user_id=2, event_id=2, like=False
+            user_id=2, event_id=2, like=True
         ),
         Like(
             user_id=3, event_id=3, like=True
