@@ -25,7 +25,8 @@ class Event(db.Model):
   event_owner = db.relationship("User")
   # ticket_quantity = db.relationship(back_populates="event")
   reviews = db.relationship("Review", back_populates="event", cascade="all, delete")
-  likes = db.relationship("Like", back_populates="event", cascade="all, delete")
+  tickets = db.relationship("Ticket", back_populates="event", cascade="all, delete")
+  # likes = db.relationship("Like", back_populates="event", cascade="all, delete")
   def to_dict(self):
     return {
       "id": self.id,
