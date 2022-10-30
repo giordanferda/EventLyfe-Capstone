@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, Redirect } from "react-router-dom";
+import React, { useState } from "react";
 import { deleteEventById } from "../../store/event";
 import { formatDate, convertMilitaryTime } from "../../util/datesUtil";
 import EditEventModal from "../EditEvent/EditEventModal";
@@ -7,6 +8,8 @@ import ReviewModal from "../Reviews/CreateReview/ReviewModal";
 import ReviewCard from "../Reviews/ReviewCard/ReviewCard";
 import defaultImage from "../defaultImage.jpg";
 import { MONTHS } from "../../util/datesUtil";
+import TicketsForm from "../Tickets/TicketsForm";
+import { Modal } from "../../context/Modal";
 import "./EventDetail.css";
 //dummy commit pt 2 reseeding
 function EventDetail() {
@@ -16,6 +19,7 @@ function EventDetail() {
   const dispatch = useDispatch();
   const event = useSelector((state) => state.event[eventId]);
   const reviews = useSelector((state) => state.reviews);
+  const [showModal, setShowModal] = useState(false);
   async function handleDelete(e) {
     e.preventDefault();
     await dispatch(deleteEventById(eventId));
@@ -110,7 +114,19 @@ function EventDetail() {
                 Delete Event
               </button>
             )}
-            {/* <button className="ticket-button">Tickets</button> */}
+            <>
+              <button
+                className="tickets-btn-on-reg-pg"
+                onClick={() => setShowModal(true)}
+              >
+                Tickets
+              </button>
+              {showModal && (
+                <Modal onClose={() => setShowModal(false)}>
+                  <TicketsForm />
+                </Modal>
+              )}
+            </>
           </div>
         </div>
         <div className="event-desc">
