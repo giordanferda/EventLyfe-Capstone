@@ -24,6 +24,9 @@ function TicketsForm({ event, closeModal }) {
     if (firstName.length === 0) {
       errors.push("First name is required");
     }
+    if (firstName.length > 50) {
+      errors.push("First name must be less than 50 characters");
+    }
     if (lastName.length === 0) {
       errors.push("Last name is required");
     }
@@ -47,8 +50,8 @@ function TicketsForm({ event, closeModal }) {
       card_number: cardNumber,
       csv: csv,
       zip_code: zipcode,
-      event_id: Number(eventId.eventId),
-      userId: user.id,
+      event_id: eventId.eventId,
+      user_id: user.id,
     };
     // console.log(eventId.eventId, user.id);
     const data = await dispatch(createTicketThunk(payload));
@@ -82,7 +85,7 @@ function TicketsForm({ event, closeModal }) {
             value={firstName}
             required
             type="text"
-            // style={errorStyle(errors, "name")}
+            style={errorStyle(errors, "firstName")}
             onChange={(e) => setFirstName(e.target.value)}
           />
         </div>
@@ -94,7 +97,7 @@ function TicketsForm({ event, closeModal }) {
             value={lastName}
             required
             type="text"
-            // style={errorStyle(errors, "name")}
+            style={errorStyle(errors, "lastName")}
             onChange={(e) => setLastName(e.target.value)}
           />
         </div>
@@ -106,7 +109,7 @@ function TicketsForm({ event, closeModal }) {
             value={cardNumber}
             required
             type="text"
-            // style={errorStyle(errors, "name")}
+            style={errorStyle(errors, "cardNumber")}
             onChange={(e) => setCardNumber(e.target.value)}
           />
         </div>
@@ -118,7 +121,7 @@ function TicketsForm({ event, closeModal }) {
             value={csv}
             required
             type="text"
-            // style={errorStyle(errors, "name")}
+            style={errorStyle(errors, "csv")}
             onChange={(e) => setCsv(e.target.value)}
           />
         </div>
@@ -130,7 +133,7 @@ function TicketsForm({ event, closeModal }) {
             value={zipcode}
             required
             type="text"
-            // style={errorStyle(errors, "name")}
+            style={errorStyle(errors, "zipcode")}
             onChange={(e) => setZipcode(e.target.value)}
           />
         </div>
