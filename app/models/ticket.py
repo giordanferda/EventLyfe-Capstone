@@ -6,8 +6,6 @@ class Ticket(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     event_id = db.Column(db.Integer, db.ForeignKey('events.id'), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    tickets_purchased = db.Column(db.Integer, nullable=False)
-    tickets_remaining = db.Column(db.Integer, nullable=False)
     first_name = db.Column(db.String, nullable=False)
     last_name = db.Column(db.String, nullable=False)
     card_number = db.Column(db.String, nullable=False)
@@ -20,10 +18,9 @@ class Ticket(db.Model):
     def to_dict(self):
         return {
             'id': self.id,
-            'event': self.event.to_dict(),
+            'event_id': self.event_id,
             'user': self.user.to_dict(),
-            'tickets_purchased': self.tickets_purchased,
-            'tickets_remaining': self.tickets_remaining,
+            'user_id': self.user_id,
             'first_name': self.first_name,
             'last_name': self.last_name,
             'card_number': self.card_number,

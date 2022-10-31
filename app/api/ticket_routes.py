@@ -25,8 +25,6 @@ def post_ticket():
         new_ticket = Ticket(
             event_id=form.event_id.data,
             user_id=form.user_id.data,
-            tickets_purchased=form.tickets_purchased.data,
-            tickets_remaining=form.tickets_remaining.data,
             first_name=form.first_name.data,
             last_name=form.last_name.data,
             card_number=form.card_number.data,
