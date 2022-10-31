@@ -37,7 +37,7 @@ function TicketsForm({ event, closeModal }) {
     if (data && data.errors) {
       setErrors(data.errors);
     } else if (data && !data.errors) {
-      history.push(`/events/${eventId}`);
+      history.push(`/manageTickets`);
     }
   };
   useEffect(() => {

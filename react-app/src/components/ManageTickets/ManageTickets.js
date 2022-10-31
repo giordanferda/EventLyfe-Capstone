@@ -1,25 +1,27 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import * as ticketActions from "../../store/ticket";
+import * as eventActions from "../../store/event";
 import { Link, useHistory } from "react-router-dom";
 import EventCard from "../EventCard";
 import "./ManageTickets.css";
 
 const ManageTickets = () => {
   const user = useSelector((state) => state.session.user);
-  const tickets = useSelector((state) => Object.values(state.ticket));
+  const tickets = useSelector((state) => Object.values(state.tickets));
   console.log(tickets, "this is tickets");
-  const filteredTickets = tickets.filter(
-    (ticket) => ticket.user_id === user.id
-  );
+  const filteredTickets = tickets.filter((event) => event.id == user.id);
+  console.log(filteredTickets, "this is filtered tickets");
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(ticketActions.getTicketThunk());
+    // console.log(tickets, "this is tickets");
   }, [dispatch]);
+
   function redirectToShow(ticketId) {
-    history.push(`/manageTickets/${ticketId}`);
+    history.push(`/events/${ticketId}`);
   }
 
   if (!filteredTickets.length) {
