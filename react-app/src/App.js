@@ -16,6 +16,7 @@ import ManageEvents from "./components/ManageEvents/ManageEvents";
 import * as reviewActions from "./store/review";
 import AboutMe from "./components/AboutMe/AboutMe";
 import BrokenLink from "./components/404Page.js/404Page";
+import ManageTickets from "./components/ManageTickets/ManageTickets";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -63,6 +64,9 @@ function App() {
           </ProtectedRoute>
           <ProtectedRoute path="/manageEvents" exact={true}>
             <ManageEvents />
+          </ProtectedRoute>
+          <ProtectedRoute path="/manageTickets" exact={true}>
+            <ManageTickets />
           </ProtectedRoute>
           <Route>
             <BrokenLink />

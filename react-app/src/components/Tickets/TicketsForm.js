@@ -19,31 +19,9 @@ function TicketsForm({ event, closeModal }) {
   console.log("eventId", eventId);
   //   console.log(numEventId, "this is num event");
 
-  useEffect(() => {
-    const errors = [];
-    if (firstName.length === 0) {
-      errors.push("First name is required");
-    }
-    if (firstName.length > 50) {
-      errors.push("First name must be less than 50 characters");
-    }
-    if (lastName.length === 0) {
-      errors.push("Last name is required");
-    }
-    if (cardNumber.length === 0) {
-      errors.push("Card number is required");
-    }
-    if (csv.length === 0) {
-      errors.push("CSV is required");
-    }
-    if (zipcode.length === 0) {
-      errors.push("Zipcode is required");
-    }
-    setErrors(errors);
-  }, [firstName, lastName, cardNumber, csv, zipcode]);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrors([]);
     const payload = {
       first_name: firstName,
       last_name: lastName,
@@ -57,11 +35,41 @@ function TicketsForm({ event, closeModal }) {
     const data = await dispatch(createTicketThunk(payload));
     // console.log(data, "this is data");
     if (data && data.errors) {
-      setErrors(data);
+      setErrors(data.errors);
     } else if (data && !data.errors) {
       history.push(`/events/${eventId}`);
     }
   };
+  useEffect(() => {
+    const errors = [];
+    if (firstName.length === 0) {
+      errors.push("firstName: First name is required");
+    }
+    if (firstName.length > 50) {
+      errors.push("firstName: First name must be less than 50 characters");
+    }
+    if (lastName.length === 0) {
+      errors.push("lastName: Last name is required");
+    }
+    if (lastName.length > 50) {
+      errors.push("lastName: First name must be less than 50 characters");
+    }
+    if (
+      cardNumber.length === 0 ||
+      cardNumber.length > 16 ||
+      cardNumber.length < 16
+    ) {
+      errors.push("cardNumber: Card number must be 16 digits");
+    }
+    if (csv.length === 0 || csv.length > 4 || csv.length < 3) {
+      errors.push("csv: CSV must be 3 or 4 characters");
+    }
+
+    if (zipcode.length === 0 || zipcode.length > 5 || zipcode.length < 5) {
+      errors.push("zipcode: Zipcode must be 5 digits");
+    }
+    setErrors(errors);
+  }, [firstName, lastName, cardNumber, csv, zipcode]);
 
   return (
     <div>
@@ -108,7 +116,7 @@ function TicketsForm({ event, closeModal }) {
             placeholder="Card Number"
             value={cardNumber}
             required
-            type="text"
+            type="number"
             style={errorStyle(errors, "cardNumber")}
             onChange={(e) => setCardNumber(e.target.value)}
           />
@@ -120,7 +128,7 @@ function TicketsForm({ event, closeModal }) {
             placeholder="Csv"
             value={csv}
             required
-            type="text"
+            type="number"
             style={errorStyle(errors, "csv")}
             onChange={(e) => setCsv(e.target.value)}
           />
@@ -132,7 +140,7 @@ function TicketsForm({ event, closeModal }) {
             placeholder="Zipcode"
             value={zipcode}
             required
-            type="text"
+            type="number"
             style={errorStyle(errors, "zipcode")}
             onChange={(e) => setZipcode(e.target.value)}
           />
