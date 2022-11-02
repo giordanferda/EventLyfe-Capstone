@@ -16,8 +16,8 @@ function TicketsForm({ event, closeModal }) {
   const [csv, setCsv] = useState("");
   const [zipcode, setZipcode] = useState("");
   const [errors, setErrors] = useState([]);
-  console.log("eventId", eventId);
-  //   console.log(numEventId, "this is num event");
+  // console.log("eventId", eventId);
+  //   (numEventId, "this is num event");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,13 +31,11 @@ function TicketsForm({ event, closeModal }) {
       event_id: eventId.eventId,
       user_id: user.id,
     };
-    // console.log(eventId.eventId, user.id);
     const data = await dispatch(createTicketThunk(payload));
-    // console.log(data, "this is data");
     if (data && data.errors) {
       setErrors(data.errors);
     } else if (data && !data.errors) {
-      history.push(`/manageTickets`);
+      history.push(`/events`);
     }
   };
   useEffect(() => {

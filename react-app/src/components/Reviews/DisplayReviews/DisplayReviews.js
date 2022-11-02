@@ -4,7 +4,6 @@ import "./DisplayReviews.css";
 const DisplayEveryReview = () => {
   const reviewState = useSelector((state) => state.reviews);
   const reviews = Object.values(reviewState);
-  console.log(reviews);
 
   return (
     <div className="review-container">
