@@ -7,7 +7,7 @@
 .splash-content {
   overflow: hidden;
   object-fit: cover;
-  height: 800px;
+  height: 91vh;
 }
 
 .splash-content > img {
@@ -35,8 +35,8 @@
 }
 
 .img-splash {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100vw;
+  height: 100vh;
+  object-fit: fill;
   opacity: 0.9;
 }

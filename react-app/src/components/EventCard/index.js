@@ -8,16 +8,17 @@ import { useSelector, useDispatch } from "react-redux";
 
 function EventCard({ redirectToShow, event }) {
   // if (!event) return null;
-  console.log(event, "this is event");
   const dispatch = useDispatch();
-
-  const events = useSelector((state) => state.event);
-  console.log("this is events", events);
-  const currEvent = events[event.event_id];
-  console.log(currEvent);
   useEffect(() => {
     dispatch(getEvents());
   }, [dispatch]);
+
+  console.log(event, "this is event");
+
+  const events = useSelector((state) => state.event);
+  console.log("this is events", events);
+  const currEvent = events[event.event_id || event.id];
+  console.log(currEvent, "THIS IS CURR EVENT");
   return (
     <div
       className="event-card"
@@ -47,7 +48,7 @@ function EventCard({ redirectToShow, event }) {
         {convertMilitaryTime(currEvent?.start_time)} -{" "}
         {convertMilitaryTime(currEvent?.end_time)}
       </div>
-      <div className="card-description">{currEvent?.description}</div>
+      {/* <div className="card-description">{currEvent?.description}</div> */}
       <div className="card-review-data">
         <div className="review-count">
           <i class="fa-regular fa-comments"></i>{" "}
