@@ -35,7 +35,7 @@ export const createTicketThunk = (ticket) => async (dispatch) => {
     },
     body: JSON.stringify(ticket),
   });
-  console.log(ticket);
+  // console.log(ticket);
   if (res.ok) {
     // console.log("res.ok", res);
     const data = await res.json();

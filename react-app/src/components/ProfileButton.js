@@ -14,6 +14,9 @@ function ProfileButton({ user }) {
         <Link className="drop-buttons" to="/manageEvents">
           Manage Events
         </Link>
+        <Link className="drop=buttons" to="/manageTickets">
+          Manage Tickets
+        </Link>
         <Link
           className="drop-buttons"
           to="/"

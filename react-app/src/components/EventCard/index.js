@@ -1,49 +1,64 @@
 import "./EventCard.css";
 import defaultImage from "../defaultImage.jpg";
 import { formatDate, convertMilitaryTime } from "../../util/datesUtil";
+import { getEvents } from "../../store/event";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 // import defaultimg from "./defaultimg.png";
 
 function EventCard({ redirectToShow, event }) {
+  // if (!event) return null;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getEvents());
+  }, [dispatch]);
+
+  console.log(event, "this is event");
+
+  const events = useSelector((state) => state.event);
+  console.log("this is events", events);
+  const currEvent = events[event.event_id || event.id];
+  console.log(currEvent, "THIS IS CURR EVENT");
   return (
     <div
       className="event-card"
-      to={`/events/${event?.id}`}
-      onClick={() => redirectToShow(event?.id)}
+      to={`/events/${currEvent?.id}`}
+      onClick={() => redirectToShow(currEvent?.id)}
     >
       <img
         className="event-card-image"
-        src={event.preview_image}
+        src={currEvent?.preview_image}
         onError={(e) => (e.target.src = defaultImage)}
         alt="Failed to load asset"
       />
       <div className="event-card-name" to={`/events/${event.id}`}>
-        {event.name}
+        {currEvent?.name}
       </div>
       <div className="event-location">
-        <i class="fa-solid fa-location-dot"></i> {event.address} {event.city},{" "}
-        {event.state}, {event.zipcode}
+        <i class="fa-solid fa-location-dot"></i> {currEvent?.address}{" "}
+        {currEvent?.city}, {currEvent?.state}, {currEvent?.zipcode}
       </div>
       <div className="date-event">
         <i class="fa-regular fa-calendar-days"></i>{" "}
-        {formatDate(event.event_starts.split("-"))} -{" "}
-        {formatDate(event.event_ends.split("-"))}
+        {formatDate(currEvent?.event_starts?.split("-"))} -{" "}
+        {formatDate(currEvent?.event_ends?.split("-"))}
       </div>
       <div className="start-end-time">
         <i class="fa-regular fa-clock"></i>{" "}
-        {convertMilitaryTime(event.start_time)} -{" "}
-        {convertMilitaryTime(event.end_time)}
+        {convertMilitaryTime(currEvent?.start_time)} -{" "}
+        {convertMilitaryTime(currEvent?.end_time)}
       </div>
-      {/* <div className="card-description">{event.description}</div> */}
+      {/* <div className="card-description">{currEvent?.description}</div> */}
       <div className="card-review-data">
         <div className="review-count">
           <i class="fa-regular fa-comments"></i>{" "}
-          {event?.review_ids.length === 1 ? (
+          {currEvent?.review_ids?.length === 1 ? (
             <div className="review-length">
-              {event?.review_ids.length} review
+              {currEvent?.review_ids?.length} review
             </div>
           ) : (
             <div className="review-length">
-              {event?.review_ids.length} reviews
+              {currEvent?.review_ids?.length} reviews
             </div>
           )}
         </div>

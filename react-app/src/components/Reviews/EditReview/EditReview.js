@@ -23,7 +23,7 @@ const EditReview = ({ closeModal, rev }) => {
     if (review.length <= 3) {
       errors.push("Review must be at least 4 characters long");
     }
-    console.log(errors, "this is errors in edit review");
+    // console.log(errors, "this is errors in edit review");
 
     setErrors(errors);
     if (review.length > 3) {
