@@ -37,6 +37,10 @@ const ManageTickets = () => {
     // console.log(tickets, "this is tickets");
   }, [dispatch]);
 
+  const handleDeleteButton = (ticketId) => {
+    dispatch(ticketActions.deleteTicketThunk(ticketId));
+  };
+
   function redirectToShow(ticketId) {
     history.push(`/events/${ticketId}`);
   }
@@ -64,6 +68,12 @@ const ManageTickets = () => {
                     key={i}
                     redirectToShow={redirectToShow}
                   />
+                  <button
+                    className="refund-ticket"
+                    onClick={() => handleDeleteButton(event.id)}
+                  >
+                    Refund Ticket
+                  </button>
                 </div>
               ))}
             </div>
