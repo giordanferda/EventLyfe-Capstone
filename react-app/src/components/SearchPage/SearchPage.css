@@ -1,0 +1,19 @@
+.search-header {
+  display: flex;
+  font-size: 32px;
+  font-weight: 550;
+  padding-bottom: 50px;
+}
+
+#query {
+  padding-left: 6px;
+  color: #5d47ec;
+}
+
+.main-search-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

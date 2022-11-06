@@ -68,6 +68,10 @@ function EventDetail() {
     return <Redirect to="/events" />;
   }
 
+  if (!sessionUser) {
+    return <Redirect to="/login" />;
+  }
+
   return (
     <div className="event-detail-container">
       <div className="event-detail-image">

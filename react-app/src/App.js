@@ -17,6 +17,7 @@ import * as reviewActions from "./store/review";
 import AboutMe from "./components/AboutMe/AboutMe";
 import BrokenLink from "./components/404Page.js/404Page";
 import ManageTickets from "./components/ManageTickets/ManageTickets";
+import SearchPage from "./components/SearchPage/SearchPage";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -58,6 +59,9 @@ function App() {
           </Route>
           <Route path="/about" exact={true}>
             <AboutMe />
+          </Route>
+          <Route path="/search">
+            <SearchPage />
           </Route>
           <ProtectedRoute path="/createEvent" exact={true}>
             <CreateEvent />

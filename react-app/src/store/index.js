@@ -4,11 +4,13 @@ import session from "./session";
 import eventReducer from "./event";
 import reviewReducer from "./review";
 import ticketReducer from "./ticket";
+import queriedEventReducer from "./queried_event";
 const rootReducer = combineReducers({
   session,
   event: eventReducer,
   reviews: reviewReducer,
   tickets: ticketReducer,
+  queried_events: queriedEventReducer,
 });
 
 let enhancer;
