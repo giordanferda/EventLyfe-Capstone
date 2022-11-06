@@ -47,22 +47,31 @@ const ManageTickets = () => {
 
   if (!filteredTickets.length) {
     return (
-      <div className="currentTicketContainer">
+      <div className="currentEventContainer">
         <h2 className="MyTicketHeader">Manage Tickets</h2>
-        <div style={{ display: "flex", justifyContent: "center" }}>
-          No tickets yet! <Link to="/events">Buy one here!</Link>
+        <div
+          className="no-tickets-yet"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          No tickets yet!
+        </div>
+        <div
+          className="no-tickets-yet"
+          style={{ display: "flex", justifyContent: "center" }}
+        >
+          <Link to="/events"> Buy one here! </Link>
         </div>
       </div>
     );
   } else {
     return (
-      <div className="currentTicketContainer">
-        <h2 className="MyTicketHeader">My Tickets</h2>
-        <div className="my-Ticket">
-          <div className="my-ticket-inner">
-            <div className="ticket-cards-inner-container">
+      <div className="currentEventContainer">
+        <h2 className="MyEventHeader">My Tickets</h2>
+        <div className="my-Event">
+          <div className="my-event-inner">
+            <div className="review-cards-inner-container">
               {filteredTickets.map((event, i) => (
-                <div className="user-ticket-card">
+                <div className="user-review-card">
                   <EventCard
                     event={event}
                     key={i}

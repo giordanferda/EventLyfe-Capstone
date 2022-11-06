@@ -12,8 +12,8 @@ function TicketsForm({ event, closeModal }) {
   const user = useSelector((state) => state.session.user);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [cardNumber, setCardNumber] = useState("");
-  const [csv, setCsv] = useState("");
+  const [cardNumber, setCardNumber] = useState("1234123412341234");
+  const [csv, setCsv] = useState("123");
   const [zipcode, setZipcode] = useState("");
   const [errors, setErrors] = useState([]);
   // console.log("eventId", eventId);
@@ -71,8 +71,10 @@ function TicketsForm({ event, closeModal }) {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} className="form-event-column">
-        <h2>Purchase Tickets</h2>
+      <form onSubmit={handleSubmit} className="review-form">
+        <h3 className="review-Title">
+          <i class="fa-solid fa-ticket"></i> Purchase Tickets
+        </h3>
         <div className="create-event-errors">
           {errors.length > 0 &&
             errors.map((error, i) => (
@@ -86,7 +88,7 @@ function TicketsForm({ event, closeModal }) {
         <div className="event-first-container-description">
           <label>First Name</label>
           <input
-            className="event-first-container-input"
+            className="event-first-container-input review-input"
             placeholder="First Name"
             value={firstName}
             required
@@ -143,7 +145,10 @@ function TicketsForm({ event, closeModal }) {
             onChange={(e) => setZipcode(e.target.value)}
           />
         </div>
-        <button disabled={errors.length > 0} className="submitEvent">
+        <button
+          className="submitButton-review purchase-button"
+          disabled={errors.length > 0}
+        >
           Purchase Tickets
         </button>
       </form>

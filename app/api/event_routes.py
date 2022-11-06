@@ -20,6 +20,12 @@ def one_event(id):
     event = Event.query.get(id)
     return event.to_dict()
 
+@event_routes.route('/search')
+def search_events():
+    query_name = request.args.get("name")
+    events = Event.query.filter(Event.name.ilike(f"%{query_name}%")).all()
+    return {"events": [event.to_dict() for event in events]}
+
 #Create an event (only if logged in)
 @event_routes.route('/', methods=['POST'])
 @login_required
