@@ -31,6 +31,7 @@
 .search-input {
   width: 25vw;
   padding: 20px;
+  /* height: 57px; */
   border-right: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
@@ -40,6 +41,11 @@
   /* margin-right: 10px; */
   /* border-bottom: 100px;
   border-right: 100px; */
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  position: absolute;
+  /* bottom: 10px; */
+  height: 57px;
 }
 
 .navbar-links {
@@ -71,3 +77,8 @@
 .login-button {
   border-radius: 20px;
 }
+
+/* .yuh {
+  position: absolute;
+  right: 1px;
+} */
