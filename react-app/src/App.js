@@ -21,7 +21,7 @@ import SearchPage from "./components/SearchPage/SearchPage";
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
-  //dummy commit for reseeding heroku
+  //dummy commit for reseeding heroku .
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
@@ -36,7 +36,7 @@ function App() {
   if (!loaded) {
     return null;
   }
-  // dummy commit 
+  // dummy commit
 
   return (
     <BrowserRouter>
