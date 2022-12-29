@@ -22,6 +22,7 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
   //dummy commit for reseeding heroku .
+  //another one 
   useEffect(() => {
     (async () => {
       await dispatch(authenticate());
