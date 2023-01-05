@@ -10,6 +10,7 @@ import EventCard from "../EventCard";
 const ManageTickets = () => {
   const user = useSelector((state) => state.session.user);
   // console.log(user);
+  //dummy commit
   const tickets = useSelector((state) => Object.values(state.tickets));
   const events = useSelector((state) => Object.values(state.event));
   // console.log(events);
